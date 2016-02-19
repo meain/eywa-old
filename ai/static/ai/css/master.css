@@ -54,12 +54,15 @@ body {
 }
 .cover-heading {
   color: #00FF2F;
-  font-size: 100px;
+  font-size: 150px;
+  font-family: 'Roboto', sans-serif;
 }
 .lead {
   color: #676262;
 }
-
+.examples {
+  color: #4d4f53;
+}
 .infospace {
   background-color: #fff;
   display: table;
@@ -84,6 +87,12 @@ body {
   padding: 30px;
 }
 
+.result-heading {
+  text-align: center;
+  color: blue;
+  font-family: 'Roboto', sans-serif;
+  font-size: 100px;
+}
 
 /*
  * Header
