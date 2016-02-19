@@ -3,21 +3,24 @@
 {% block content%}
 
 <!-- Primary full page content block - this fills the whole page -->
+<!-- Primary full page content block - this fills the whole page -->
 <div class="site-wrapper">
   <div class="site-wrapper-inner">
     <div class="cover-container">
       <div class="inner cover">
         <h1 class="cover-heading">eywa</h1>
-        <p class="lead">Well, ever wanted someone to think for you? Here we are!</p>
-        <div class="input-group">
-          <input type="text" class="form-control input-lg">
-          <span class="input-group-btn">
-            <button class="btn btn-success btn-lg" type="button">Go!</button>
-          </span>
-        </div>
+        <p class="lead">Well, ever wanted someone to think for you? Here I am!</p>
+        <form class="" action="{% url 'index' %}" method="post">{% csrf_token %}
+          <div class="input-group">
+            <input type="text" name="querry_term" class="form-control input-lg" placeholder="You know what to do.">
+            <span class="input-group-btn">
+              <button class="btn btn-success btn-lg" type="submit">Go!</button>
+            </span>
+          </div>
+        </form>
       </p>
       <p class = "examples">
-        Things you can try : [ Add exaple querries here ]
+        Things you can try : Hey!, What are you up to?
       </p>
     </div>
   </div>
@@ -28,6 +31,10 @@
 <div class="result-container" id = "querry-result">
   <div class="result-heading-container">
     <h1 class = "result-heading">Results</h1>
+    <!-- This is where the actual result will be displayed -->
+
+    <h1 class="lead">{{ querry.querry_result }}</h1>
+
     <!-- This is where the actual result will be displayed -->
   </div>
 </div>

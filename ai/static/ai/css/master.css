@@ -26,6 +26,7 @@ a:hover {
 
 html,
 body {
+  border-top: 3px solid #00FF2F;
   height: 100%;
   background-color: #000;
 }
@@ -92,6 +93,11 @@ body {
   color: blue;
   font-family: 'Roboto', sans-serif;
   font-size: 100px;
+}
+
+.result-container {
+  background: #fff;
+  border-bottom: 0px;
 }
 
 /*

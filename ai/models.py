@@ -6,7 +6,8 @@ from django.db import models
 from django.utils import timezone
 
 class Querry(models.Model):
-    querry_term = models.CharField(max_length = 1000)
+    querry_term = models.CharField(max_length = 1000, null = False)
+    querry_result = models.CharField(max_length = 1000)
     timestamp = models.DateTimeField(default = timezone.now)
 
     def __unicode__(self):

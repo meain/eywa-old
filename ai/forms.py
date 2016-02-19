@@ -1,5 +1,8 @@
 
 from django import forms
+from .models import Querry
 
-class QuerryForm(forms.Form):
-    querry_term = forms.CharField(label='Querry', max_length = 1000)
+class QuerryForm(forms.ModelForm):
+    class Meta:
+		model = Querry
+		fields = ["querry_term",]
