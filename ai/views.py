@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
 from rest_framework import generics
 from models import Querry
 from serializers import AiSerializer
+from django.core import serializers
+from django.utils import timezone
+import json
 
 # Create your views here.
 
@@ -18,8 +22,8 @@ from .forms import QuerryForm
 #You dont have to worry about anything, all you have to do is to make this "customFunciton" which gets the,
 #user querry as the variable "term" and get the output and return it
 #as a string(currently, will change that model if json or something like that is what you want as the result).
-def customFuncion(term):
-    return term
+def custom_function(term):
+    return "result data"
 # ========================================================================================
 # ========================================================================================
 
@@ -68,5 +72,22 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AiSerializer
 
 def ajax_view(request, pk):
-    print "sdfsd"
     print pk
+    print "booo"
+    q_res = custom_function(pk)
+    print q_res
+    q = Querry(querry_term = pk, querry_result = q_res, timestamp = timezone.now())
+    q.save()
+    print q.querry_result
+    data = serializers.serialize('json', [q])
+    data = str(data)
+    data = data[1:]
+    data = data[:-1]
+    print data
+    # print data + "sdfsdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+    # print type(data[0])
+    # print type(data)
+    print HttpResponse(data, content_type='application/json')
+    return HttpResponse(data, content_type='application/json')
+    # print JsonResponse(q, safe = False)
+    # return JsonResponse(json.dumps(data))
