@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from rest_framework import generics
+from models import Querry
+from serializers import AiSerializer
 
 # Create your views here.
 
@@ -59,3 +62,11 @@ def index(request):
 #     # print pk
 #     context = {}
 #     return render(request, "ai/result.html", context)
+
+class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Querry.objects.all()
+    serializer_class = AiSerializer
+
+def ajax_view(request, pk):
+    print "sdfsd"
+    print pk

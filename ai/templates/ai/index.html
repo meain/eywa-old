@@ -2,28 +2,27 @@
 
 {% block content%}
 
-<!-- Primary full page content block - this fills the whole page -->
-<div class="site-wrapper">
-  <div class="site-wrapper-inner">
-    <div class="cover-container">
-      <div class="inner cover">
-        <h1 class="cover-heading">eywa</h1>
-        <p class="lead">Well, ever wanted someone to think for you? Here I am!</p>
-        <form class="" action="{% url 'index' %}" method="post">{% csrf_token %}
-          <div class="input-group">
-            <input type="text" name="querry_term" class="form-control input-lg" placeholder="You know what to do.">
-            <span class="input-group-btn">
-              <button class="btn btn-success btn-lg" type="submit">Go!</button>
-            </span>
-          </div>
-        </form>
-      </p>
-      <p class = "examples">
-        Things you can try : How is the weather?, Can you help me with a gift for my girlfriend?
-      </p>
+<div class="fill-page">
+    <h1 class = "text-center roboto-font big-font">Hey!</h1>
+</div>
+
+<div id="chat" class="chat-box-wrapper">
+    <div class="chat-messages">
+       <div class="msg_ai">
+           Hey there
+       </div>
+       <div class="msg_user">
+            Hello eywa! 
+       </div>
+       <div class="reference"></div>
     </div>
-  </div>
-  </div>
+    <div class="chat-bottom">
+        <form action="#" method="post" onSubmit="return false" id="chat-box">
+           <!--<input type="hidden" name="user-name" id="name" value="usr-name">-->
+           <input class="chat-message-text" type="text" name="querry-term" id="message" value="" placeholder="Type your message..">
+           <input class="chat-send-button" type="submit" name="submit" value="Send">
+        </form>
+    </div>
 </div>
 
 {% endblock %}
