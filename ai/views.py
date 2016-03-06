@@ -6,6 +6,7 @@ from serializers import AiSerializer
 from django.core import serializers
 from django.utils import timezone
 import json
+import urllib
 
 # Create your views here.
 
@@ -43,7 +44,6 @@ def index(request):
         print "Not valid"
     context = {'form' : form}
     return render(request, "ai/index.html", context)
-
 # def result(request):
 #     form = QuerryForm(request.POST or None)
 #     if form.is_valid():
@@ -72,13 +72,15 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AiSerializer
 
 def ajax_view(request, pk):
-    print pk
-    print "booo"
+    print pk #here pk is the data or the querry given as the input by the user
+    # it is currently in unicode format nd has to converted into string
+    urllib.unquote(pk).decode('utf8')
+    # print "booo"
     q_res = custom_function(pk)
-    print q_res
+    # print q_res
     q = Querry(querry_term = pk, querry_result = q_res, timestamp = timezone.now())
     q.save()
-    print q.querry_result
+    # print q.querry_result
     data = serializers.serialize('json', [q])
     data = str(data)
     data = data[1:]
@@ -87,7 +89,7 @@ def ajax_view(request, pk):
     # print data + "sdfsdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
     # print type(data[0])
     # print type(data)
-    print HttpResponse(data, content_type='application/json')
+    # print HttpResponse(data, content_type='application/json')
     return HttpResponse(data, content_type='application/json')
     # print JsonResponse(q, safe = False)
     # return JsonResponse(json.dumps(data))

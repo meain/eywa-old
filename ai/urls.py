@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name = "index"),
     url(r'^result/(?P<pk>[0-9]+)/$', views.index, name = "index"),
-    url(r'^api/(?P<pk>[\w-]+)/$', views.ajax_view, name = "res"),
+    url(r'^api/(?P<pk>.+?)/$', views.ajax_view, name = "res"),
 ]
 
 if settings.DEBUG:
