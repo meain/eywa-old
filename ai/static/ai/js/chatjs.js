@@ -6,6 +6,7 @@ $(".chat-send-button").click(function(){
 $(".chat-message-text").val("")
 $("<div class = 'msg_user'>"+msg+"</div>").insertBefore(".reference");
 $("<div class = 'msg_ai'>"+data['fields']['querry_result']+"</div>").insertBefore(".reference");
+$("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
 });
 });
 });
