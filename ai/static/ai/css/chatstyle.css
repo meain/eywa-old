@@ -115,16 +115,16 @@ p{
 .msg_ai{
     border-radius: 5px;
     padding: 6px;
-    border: 2px solid #34495e;
+    border: 2px solid #bdc3c7;
     margin: 7px;
     margin-right: 60px;
-    box-shadow: 0 0 6px #B2B2B2;
+    box-shadow: 0 0 3px #B2B2B2;
 }
 .msg_user{
     border-radius: 5px;
     padding: 6px;
-    border: 2px solid #8e44ad;
+    border: 2px solid #95a5a6;
     margin: 7px;
     margin-left: 60px;
-    box-shadow: 0 0 6px #B2B2B2;
+    box-shadow: 0 0 3px #B2B2B2;
 }
