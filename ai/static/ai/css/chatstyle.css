@@ -2,6 +2,12 @@ body{
     border: 10px;
     font-family: "Robot",sans-serif;
 }
+h1{
+    font-family: "Roboto",helvetica,sans-serif;
+}
+p{
+    font-family: "Raleway", helvetica, sans-serif;
+}
 .fill-page{
     width: 100%;
     height: 100%
@@ -13,6 +19,9 @@ body{
 }
 .big-font{
     font-size: 50px;
+}
+.padding-added{
+    padding: 50px;
 }
 .chat-box-wrapper{
     padding: 30px;
@@ -26,7 +35,7 @@ body{
     background: white;
     padding: 5px;
     border-bottom: 1px solid #ddd;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .chat-bottom{
     padding: 15px;
