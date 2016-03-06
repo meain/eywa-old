@@ -39,12 +39,11 @@ p{
 }
 .chat-box-wrapper{
     padding: 30px;
-    float: right;
     width: 80%;
     height: 90%;
     min-height: 90%;
     border: 2px solid #ddd;
-    margin-right: 20px;
+    margin: 0 auto;
 }
 @media (max-width: 480px) {
 .chat-box-wrapper{
