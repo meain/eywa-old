@@ -2,25 +2,35 @@
 
 {% block content%}
 
-<!--<div class="col-lg-7 padded-top">-->
-    <!--<div id="chat" class="chat-box-wrapper">-->
-        <!--<div class="chat-messages" id="chat-msg-box">-->
-            <!--<div class="msg_user">-->
-                <!--Hello eywa! -->
-            <!--</div>-->
-            <!--<div class="msg_ai">-->
-                <!--Hey there-->
-            <!--</div>-->
-            <!--<div class="reference"></div>-->
-        <!--</div>-->
-        <!--<div class="chat-bottom">-->
-            <!--<form action="#" method="post" onSubmit="return false" id="chat-box">-->
-                <!--[><input type="hidden" name="user-name" id="name" value="usr-name"><]-->
-                <!--<input class="chat-message-text" type="text" name="querry-term" id="message" value="" placeholder="Type your message..">-->
-                <!--<input class="chat-send-button" type="submit" name="submit" value="Send">-->
-            <!--</form>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div id="top" class="fill-page">
+    <div id="data-container" class="container">
+        <div class="col-lg-4" id="left-pane">
+            <h1 id="left-pane-heading" class="text-center">eywa</h1>
+        </div>
+        <div class="col-lg-8" id="right-pane">
+            <div id="chat" class="chat-box-wrapper">
+                <div class="chat-messages" id="chat-msg-box">
+                    <div class="msg_user">
+                        Hello eywa! 
+                    </div>
+                    <div class="msg_ai">
+                        Hey there
+                    </div>
+                    <div class="reference"></div>
+                </div>
+                <div class="chat-bottom">
+                    <form action="#" method="post" onSubmit="return false" id="chat-box">
+                        <div class="input-group">
+                            <input type="text" id="chat-message-text" class="form-control" placeholder="Type your message...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="chat-send-button" type="button">Go!</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
