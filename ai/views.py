@@ -71,8 +71,9 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     queryset = Querry.objects.all()
     serializer_class = AiSerializer
 
-def ajax_view(request, pk):
-    print pk #here pk is the data or the querry given as the input by the user
+def ajax_view(request, msg, idu):
+    print msg + "\n"  + idu
+    pk = msg
     # it is currently in unicode format nd has to converted into string
     urllib.unquote(pk).decode('utf8')
     # print "booo"

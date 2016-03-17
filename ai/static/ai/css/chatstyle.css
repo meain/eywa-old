@@ -5,10 +5,10 @@
     /*background-image: url("../img/back.svg");*/
 }
 .top-panel{
-    padding: 0.1px;
+    padding: 1px;
     padding-left: 20px;
-    margin-top: 10px;
     background-color: rgba(236, 240, 241,1.0);
+    height: 70px;
 }
 #data-container{
     padding-bottom: 50px;
@@ -19,6 +19,14 @@
     font-family: "Roboto", helvetica, sans-serif;
     font-weight: 100;
     text-align: left;
+    width: 80%;
+    float: left;
+    clear: both;
+}
+.signinbutton{
+    float: right;
+    clear: both;
+    padding-right: 0px;
 }
 #left-pane{
     /*background-color: #3498db;*/
@@ -28,6 +36,7 @@
     padding: 10px;
     height: 93%;
     /*border-radius: 150px;*/
+    clear: both;
 }
 #right-pane{
     /*background-color: #95a5a6;*/
@@ -39,6 +48,7 @@
     padding-top: 10px;
     height: 93%;
     /*border-radius: 150px;*/
+    clear: right;
 }
 .chat-box-wrapper{
     width: 100%;
