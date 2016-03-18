@@ -1,9 +1,19 @@
 $(document).ready(function(){
+var idu;
 $("#signout").click(
 function logout()
 {
     gapi.auth.signOut();
     //location.reload();
+gapi.client.load('plus','v1', function(){
+ var request = gapi.client.plus.people.get({
+   'userId': 'me'
+ });
+ request.execute(function(resp) {
+   console.log('Retrieved profile for:' + resp.displayName);
+idu = resp.id;
+ });
+});
 }
 );
 $("#chat-message-text").keyup(function(event){
@@ -11,7 +21,6 @@ $("#chat-message-text").keyup(function(event){
         $("#chat-send-button").click();
     }
 });
-var idu;
 $("#chat-send-button").click(function(){
     var msg = $("#chat-message-text").val();
 gapi.client.load('plus','v1', function(){
