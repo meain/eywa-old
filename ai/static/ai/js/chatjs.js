@@ -1,5 +1,11 @@
 $(document).ready(function(){
-alert("Ddd");
+$("#signout").click(
+function logout()
+{
+    gapi.auth.signOut();
+    //location.reload();
+}
+);
 $("#chat-message-text").keyup(function(event){
     if(event.keyCode == 13){
         $("#chat-send-button").click();
@@ -8,7 +14,6 @@ $("#chat-message-text").keyup(function(event){
 var idu;
 $("#chat-send-button").click(function(){
     var msg = $("#chat-message-text").val();
-do{
 gapi.client.load('plus','v1', function(){
  var request = gapi.client.plus.people.get({
    'userId': 'me'
@@ -18,7 +23,6 @@ gapi.client.load('plus','v1', function(){
 idu = resp.id;
  });
 });
-}while(idu.length<1);
     var urlmsg = encodeURIComponent(msg);
     idu = encodeURIComponent(idu);
     $.getJSON('/api/msg='+urlmsg+'&id='+idu, function(data, jqXHR){
