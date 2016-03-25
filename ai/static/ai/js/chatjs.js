@@ -1,4 +1,18 @@
 $(document).ready(function(){
+$('#signinmodal').on('hidden.bs.modal', function () {
+document.getElementById("user-profile").src = "../static/ai/img/profile.png";
+gapi.client.load('plus','v1', function(){
+ var request = gapi.client.plus.people.get({
+   'userId': 'me'
+ });
+ request.execute(function(resp) {
+   console.log('Retrieved profile for:' + resp.displayName + ' ' + resp.image.url);
+if(resp.image.url!='undefined'){
+    document.getElementById("user-profile").src = resp.image.url;
+}
+ });
+});
+})
 var idu;
 $("#signout").click(
 function logout()

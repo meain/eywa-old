@@ -5,30 +5,42 @@
 <div id="top" class="fill-page">
     <div id="data-container" class="container">
     <div class="top-panel">
-            <h1 id="left-pane-heading" class="text-center">eywa</h1>
-            <button class="g-signin"
-                    id = "signinButton"
-                    data-scope="https://www.googleapis.com/auth/plus.login"
-                    data-clientid="854543947083-utnu74nr2d4rjke4pg0urcg6454aamqr.apps.googleusercontent.com"
-                    data-theme="dark"
-                    data-cookiepolicy="single_host_origin"
-                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                    data-width="wide">
-            </button>
-            <button id="signout">signout</button>
+            <div class="col-lg-6 left-pane-heading">
+                <h1 id="left-pane-heading" class="text-center">eywa</h1>
+            </div>
+            <div id="usr-img" class="usr-img col-lg-6">
+                <img id="user-profile" data-toggle="modal" data-target="#signinmodal" class="img-circle" width="50" height="50" src="../static/ai/img/profile.png" alt="google plus">
+            </div>
+            <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="siginModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="ModalLabel">Google+ sigin</h4>
+                        </div>
+                        <div class="model-contnt">
+                            <button class="g-signin"
+                                    id = "signinButton"
+                                    data-scope="https://www.googleapis.com/auth/plus.login"
+                                    data-clientid="854543947083-utnu74nr2d4rjke4pg0urcg6454aamqr.apps.googleusercontent.com"
+                                    data-theme="dark"
+                                    data-cookiepolicy="single_host_origin"
+                                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                                    data-width="wide"
+                                    data-dismiss="modal"
+                                    >
+                            </button>
+                            <button id="signout" class="btn btn-default" data-dismiss="modal">signout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="profile"></div>
             <!--<img id="gsignint-" src="../img/gp.png" alt="G+">-->
     </div>
         <div class="col-lg-4" id="left-pane">
             <!--<h1 id="left-pane-heading" class="text-center">eywa</h1>-->
             <div class="data-pane">
-                <div class="cell">
-                <div class="image">
-                    <img src="http://www.dreveterinary.com/lib/img/placeholder_small.png" alt="">
-                </div>
-                <div class="text">
-                </div>
-                </div>
             </div>
         </div>
         <div class="col-lg-8" id="right-pane">
