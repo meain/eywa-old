@@ -105,6 +105,7 @@
     margin: 7px;
     /*margin-right: 190px;*/
     /*width: 70%;*/
+    margin-right: auto;
     min-width: 10%; /* Overrides max-width */
     /*width: 100%;*/
     max-width: 70%; /* Will be AT MOST 20em wide */

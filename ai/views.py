@@ -9,7 +9,7 @@ import json
 import urllib
 
 # Create your views here.
-
+from reply import *
 from .forms import QuerryForm
 
 # ========================================================================================
@@ -23,8 +23,7 @@ from .forms import QuerryForm
 #You dont have to worry about anything, all you have to do is to make this "customFunciton" which gets the,
 #user querry as the variable "term" and get the output and return it
 #as a string(currently, will change that model if json or something like that is what you want as the result).
-def custom_function(term, user_id):
-    return "result data"
+'''change in reply.py'''
 # ========================================================================================
 # ========================================================================================
 
@@ -73,6 +72,9 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
 
 def ajax_view(request, msg, idu):
     pk = msg
+    user_data = idu
+    if 'id' in json.loads(idu):
+        idu = json.loads(idu)['displayName']
     print type(pk)
     if pk == "undefined":
         pk = ""
@@ -80,7 +82,7 @@ def ajax_view(request, msg, idu):
     # it is currently in unicode format nd has to converted into string
     urllib.unquote(pk).decode('utf8')
     # print "booo"
-    q_res = custom_function(pk, idu)
+    q_res = get_result(pk, idu)
     # print q_res
     q = Querry(querry_term = pk, querry_result = q_res, timestamp = timezone.now())
     q.save()
