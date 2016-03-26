@@ -10,6 +10,8 @@ import urllib
 
 # Create your views here.
 from reply import *
+from aimlbot import *
+k = ''
 from .forms import QuerryForm
 
 # ========================================================================================
@@ -41,6 +43,8 @@ def index(request):
         return render(request, "ai/result.html", {'querry' : instance})
     else:
         print "Not valid"
+        global k
+        k = initialize_aiml()
     context = {'form' : form}
     return render(request, "ai/index.html", context)
 # def result(request):
@@ -82,7 +86,8 @@ def ajax_view(request, msg, idu):
     # it is currently in unicode format nd has to converted into string
     urllib.unquote(pk).decode('utf8')
     # print "booo"
-    q_res = get_result(pk, idu)
+    global k
+    q_res = get_result(pk, idu, k)
     # print q_res
     q = Querry(querry_term = pk, querry_result = q_res, timestamp = timezone.now())
     q.save()
