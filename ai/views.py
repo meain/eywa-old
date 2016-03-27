@@ -7,6 +7,8 @@ from django.core import serializers
 from django.utils import timezone
 import json
 import urllib
+import threading
+from multiprocessing import Queue
 
 # Create your views here.
 from reply import *
@@ -75,13 +77,12 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AiSerializer
 
 def ajax_view(request, msg, idu):
+    pk = ""
     pk = msg
     user_data = idu
     if 'id' in json.loads(idu):
         idu = json.loads(idu)['displayName']
     print type(pk)
-    if pk == "undefined":
-        pk = ""
     print pk + "\n"  + idu
     # it is currently in unicode format nd has to converted into string
     urllib.unquote(pk).decode('utf8')

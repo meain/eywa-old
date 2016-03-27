@@ -1,6 +1,7 @@
 import aiml
 import time
 import glob
+from multiprocessing import Queue
 
 def initialize_aiml():
     # The Kernel object is the public interface to
@@ -19,4 +20,6 @@ def initialize_aiml():
     return k
 
 def reply_aiml(query, k):
+    print k
+    print type(k)
     return k.respond(query)
