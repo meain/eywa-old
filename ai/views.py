@@ -46,7 +46,7 @@ def index(request):
     else:
         print "Not valid"
         global k
-        k = initialize_aiml()
+        #k = initialize_aiml()
     context = {'form' : form}
     return render(request, "ai/index.html", context)
 # def result(request):
