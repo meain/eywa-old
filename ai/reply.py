@@ -1,5 +1,6 @@
 from aimlbot import *
 import wolframapi as wapi
+import imageapi as iapi
 
 def get_result(query, user_id, k):
 	'''
@@ -12,6 +13,14 @@ def get_result(query, user_id, k):
 		print "Wolfram query : " + query
 		wresult,wdat = wapi.frame_and_request(query)
 		return wdat
+	if query.split(' ', 1)[0] == 'image':
+		query = query.split(' ', 1)[1]
+		print "Image query : " + query
+		wsuccess, wlink = iapi.get_image(query)
+		if wsuccess == True:
+			return wlink
+		else:
+			return 'No image'		#Hope it will never be used
 	else:
 		# the aiml takes time to load, will have to run it in a parallel thread
 		return reply_aiml(query, k)

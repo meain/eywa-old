@@ -115,6 +115,7 @@
     float: left;
     clear: right;
     font-size: 15px;
+    word-wrap: break-word;
 }
 .msg_user{
     background-color: #fff;
@@ -137,6 +138,7 @@
     float: right;
     clear: left;
     font-size: 15px;
+    word-wrap: break-word;
 }
 .data-pane{
     width: 100%;
