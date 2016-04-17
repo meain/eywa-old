@@ -46,7 +46,7 @@ def index(request):
     else:
         print "Not valid"
         global k
-        k = initialize_aiml()
+        #k = initialize_aiml()
     context = {'form' : form}
     return render(request, "ai/index.html", context)
 # def result(request):
@@ -86,7 +86,7 @@ def ajax_view(request, msg, idu):
     urllib.unquote(msg).decode('utf8')
     # print "booo"
     global k
-    q_res, q_type = get_result(msg, idu, k)
+    q_res= get_result(msg, idu, k)
     # print q_res
     q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
     q.save()
@@ -95,21 +95,11 @@ def ajax_view(request, msg, idu):
     # data = str(data)
     # data = data[1:]
     # data = data[:-1]
+    print q_res
     data = {}
     data['querry_term'] = q.querry_term
-    #data['querry_result'] = q.querry_result
-    data_result = []
-    if q_type == "image":
-        sub_result = {}
-        sub_result['type'] = 'image'
-        sub_result['content'] = q_res
-        data_result.append(sub_result)
-    else:
-        sub_result = {}
-        sub_result['type'] = 'text'
-        sub_result['content'] = q_res
-        data_result.append(sub_result)
-    data['results'] = data_result
+    data['resultsno'] = len(q_res)
+    data['results'] = q_res
     data = json.dumps(data)
     print data
     print '.'

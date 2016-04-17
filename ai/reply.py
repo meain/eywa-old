@@ -3,25 +3,100 @@ import wolframapi as wapi
 import imageapi as iapi
 
 def get_result(query, user_id, k):
+	res = []
+	item = {}
 	'''
 	This fucniton diverts the querry to different routes
 	Returns the result and the type of result
 	'''
 	if query == "hey":
-		return ("Hey " + user_id), "text" 
-	if query.split(' ', 1)[0] == 'wolfram':
+		#return ("Hey " + user_id), "text"
+		item['content'] = "Hey " + user_id
+		item['type'] = "text"
+		res.append(item)
+		return res
+	elif query.split(' ', 1)[0] == 'wolfram':
 		query = query.split(' ', 1)[1]
 		print "Wolfram query : " + query
 		wresult,wdat = wapi.frame_and_request(query)
-		return wdat, "wolfram"
-	if query.split(' ', 1)[0] == 'image':
+		#return wdat, "wolfram"
+		item['content'] = wdat
+		item['type'] = "text"
+		res.append(item)
+		return res
+	elif query.split(' ', 1)[0] == 'image':
 		query = query.split(' ', 1)[1]
 		print "Image query : " + query
 		wsuccess, wlink = iapi.get_image(query)
 		if wsuccess == True:
-			return wlink, "image"
+			#return wlink, "image"
+			item['content'] = wlink
+			item['type'] = "image"
 		else:
-			return 'No image', "text"	#Hope it will never be used
+			#return 'No image', "text"	#Hope it will never be used
+			item['content'] = 'No image'
+			item['type'] = "text"
+		res.append(item)
+		return res
+	elif query.split(' ', 1)[0] == 'multiline':
+		query = query.split(' ', 1)[1]
+		if query == 'ii':
+			wsuccess, wlink = iapi.get_image('one')
+			if wsuccess == True:
+				#return wlink, "image"
+				item['content'] = wlink
+				item['type'] = "image"
+			else:
+				#return 'No image', "text"	#Hope it will never be used
+				item['content'] = 'No image'
+				item['type'] = "text"
+			res.append(item)
+			wsuccess, wlink = iapi.get_image('two')
+			if wsuccess == True:
+				#return wlink, "image"
+				item['content'] = wlink
+				item['type'] = "image"
+			else:
+				#return 'No image', "text"	#Hope it will never be used
+				item['content'] = 'No image'
+				item['type'] = "text"
+			res.append(item)
+		elif query == 'it':
+			wsuccess, wlink = iapi.get_image(query)
+			if wsuccess == True:
+				#return wlink, "image"
+				item['content'] = wlink
+				item['type'] = "image"
+			else:
+				#return 'No image', "text"	#Hope it will never be used
+				item['content'] = 'No image'
+				item['type'] = "text"
+			res.append(item)
+			item['content'] = 'Dummy text'
+			item['type'] = "text"
+			res.append(item)
+		elif query == 'ti':
+			item['content'] = 'Dummy text'
+			item['type'] = "text"
+			res.append(item)
+			wsuccess, wlink = iapi.get_image(query)
+			if wsuccess == True:
+				#return wlink, "image"
+				item['content'] = wlink
+				item['type'] = "image"
+			else:
+				#return 'No image', "text"	#Hope it will never be used
+				item['content'] = 'No image'
+				item['type'] = "text"
+			res.append(item)
+		elif query == 'tt':
+			item['content'] = 'Dummy text one'
+			item['type'] = "text"
+			res.append(item)
+			item['content'] = 'Dummy text two'
+			item['type'] = "text"
+			res.append(item)
+		return res
 	else:
 		# the aiml takes time to load, will have to run it in a parallel thread
 		return reply_aiml(query, k), "text"

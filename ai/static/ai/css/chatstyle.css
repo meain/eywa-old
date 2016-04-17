@@ -113,7 +113,7 @@
     box-shadow: 0 0 6px #B2B2B2;
     font-family: "Raleway", helvetica, sans-serif;
     float: left;
-    clear: right;
+    clear: both;
     font-size: 15px;
     word-wrap: break-word;
 }
@@ -140,7 +140,7 @@
     box-shadow: 0 0 6px #B2B2B2;
     font-family: "Raleway", helvetica, sans-serif;
     float: right;
-    clear: left;
+    clear: both;
     font-size: 15px;
     word-wrap: break-word;
 }
