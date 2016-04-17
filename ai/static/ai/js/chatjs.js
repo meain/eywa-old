@@ -83,10 +83,12 @@ $(document).ready(function() {
                 $("#chat-message-text").val("")
                 $("<div class = 'msg_user'>" + msg + "</div>").insertBefore(".reference");
                 for (var i = 0; i < data['resultsno']; i++) {
-                    if (data['results'][i]['type'] == 'text') {
-                        $("<div class = 'msg_ai'>" + data['results'][i]['content'] + "</div>").insertBefore(".reference");
-                    } else if (data['results'][i]['type'] == 'image') {
-                        $("<div class = 'msg_ai'><img class='img_ai' src='" + data['results'][i]['content'] + "' alt = 'image'></div>").insertBefore(".reference");
+                    var item = data['results'][i];
+                    if (item['type'] == 'text') {
+                        $("<div class = 'msg_ai'>" + item['content'] + "</div>").insertBefore(".reference");
+                    } 
+                    else if (item['type'] == 'image') {
+                        $("<div class = 'msg_ai'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
                         //Used so that the scroll is correct once the image is fully loaded
                         $('img.img_ai').imageLoad(function() {
                             $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);

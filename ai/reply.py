@@ -51,6 +51,7 @@ def get_result(query, user_id, k):
 				item['content'] = 'No image'
 				item['type'] = "text"
 			res.append(item)
+			item = {}
 			wsuccess, wlink = iapi.get_image('two')
 			if wsuccess == True:
 				#return wlink, "image"
@@ -62,7 +63,7 @@ def get_result(query, user_id, k):
 				item['type'] = "text"
 			res.append(item)
 		elif query == 'it':
-			wsuccess, wlink = iapi.get_image(query)
+			wsuccess, wlink = iapi.get_image('placeholder')
 			if wsuccess == True:
 				#return wlink, "image"
 				item['content'] = wlink
@@ -72,6 +73,7 @@ def get_result(query, user_id, k):
 				item['content'] = 'No image'
 				item['type'] = "text"
 			res.append(item)
+			item = {}
 			item['content'] = 'Dummy text'
 			item['type'] = "text"
 			res.append(item)
@@ -79,7 +81,8 @@ def get_result(query, user_id, k):
 			item['content'] = 'Dummy text'
 			item['type'] = "text"
 			res.append(item)
-			wsuccess, wlink = iapi.get_image(query)
+			item = {}
+			wsuccess, wlink = iapi.get_image('placeholder')
 			if wsuccess == True:
 				#return wlink, "image"
 				item['content'] = wlink
@@ -93,6 +96,7 @@ def get_result(query, user_id, k):
 			item['content'] = 'Dummy text one'
 			item['type'] = "text"
 			res.append(item)
+			item = {}
 			item['content'] = 'Dummy text two'
 			item['type'] = "text"
 			res.append(item)
