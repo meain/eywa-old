@@ -67,7 +67,12 @@ idu = resp;
     $.getJSON('/api/msg='+urlmsg+'&id='+idu, function(data, jqXHR){
 $("#chat-message-text").val("")
 $("<div class = 'msg_user'>"+msg+"</div>").insertBefore(".reference");
-$("<div class = 'msg_ai'>"+data['fields']['querry_result']+"</div>").insertBefore(".reference");
+if(data['results'][0]['type'] == 'text'){
+  $("<div class = 'msg_ai'>"+data['results'][0]['content']+"</div>").insertBefore(".reference");
+}
+else if(data['results'][0]['type'] == 'image') {
+  $("<div class = 'msg_ai'>"+data['results'][0]['content']+ "- image"+"</div>").insertBefore(".reference");
+}
 $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
 });
 });
