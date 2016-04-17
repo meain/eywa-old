@@ -71,7 +71,7 @@ if(data['results'][0]['type'] == 'text'){
   $("<div class = 'msg_ai'>"+data['results'][0]['content']+"</div>").insertBefore(".reference");
 }
 else if(data['results'][0]['type'] == 'image') {
-  $("<div class = 'msg_ai'>"+data['results'][0]['content']+ "- image"+"</div>").insertBefore(".reference");
+  $("<div class = 'msg_ai'><img class='img_ai' src='"+data['results'][0]['content']+"' alt = 'image'></div>").insertBefore(".reference");
 }
 $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
 });

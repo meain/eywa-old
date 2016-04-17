@@ -117,6 +117,10 @@
     font-size: 15px;
     word-wrap: break-word;
 }
+.img_ai{
+    max-width: 100%;
+    height: auto;
+}
 .msg_user{
     background-color: #fff;
     color: #000;
