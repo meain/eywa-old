@@ -1,3 +1,7 @@
+function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+}
+
 $(document).ready(function(){
 var idu;
 $('#chat-message-text').click(function () {
@@ -52,10 +56,13 @@ $("#chat-message-text").keyup(function(event){
 });
 $("#chat-send-button").click(function(){
     var msg = $("#chat-message-text").val();
+    if(!isEmptyOrSpaces(msg)){
+
 gapi.client.load('plus','v1', function(){
  var request = gapi.client.plus.people.get({
    'userId': 'me'
  });
+
  request.execute(function(resp) {
    console.log('Retrieved profile for:' + resp.displayName);
 idu = resp;
@@ -70,5 +77,6 @@ $("<div class = 'msg_user'>"+msg+"</div>").insertBefore(".reference");
 $("<div class = 'msg_ai'>"+data['fields']['querry_result']+"</div>").insertBefore(".reference");
 $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
 });
+}
 });
 });
