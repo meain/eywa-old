@@ -1,6 +1,14 @@
 function isEmptyOrSpaces(str){
     return str === null || str.match(/^ *$/) !== null;
 }
+$.fn.imageLoad = function(fn){
+    this.load(fn);
+    this.each( function() {
+        if ( this.complete && this.naturalWidth !== 0 ) {
+            $(this).trigger('load');
+        }
+    });
+}
 
 $(document).ready(function(){
 var idu;
@@ -79,6 +87,10 @@ if(data['results'][0]['type'] == 'text'){
 }
 else if(data['results'][0]['type'] == 'image') {
   $("<div class = 'msg_ai'><img class='img_ai' src='"+data['results'][0]['content']+"' alt = 'image'></div>").insertBefore(".reference");
+  //Used so that the scroll is correct once the image is fully loaded
+$('img.img_ai').imageLoad(function(){
+      $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
+   });
 }
 $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
 });
