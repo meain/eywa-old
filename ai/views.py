@@ -77,28 +77,44 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AiSerializer
 
 def ajax_view(request, msg, idu):
-    pk = ""
-    pk = msg
     user_data = idu
     if 'id' in json.loads(idu):
         idu = json.loads(idu)['displayName']
-    print type(pk)
-    print pk + "\n"  + idu
-    # it is currently in unicode format nd has to converted into string
-    urllib.unquote(pk).decode('utf8')
+    #print type(msg)
+    print msg + "\n"  + idu
+    # it is currently in unicode format and has to be converted into string
+    urllib.unquote(msg).decode('utf8')
     # print "booo"
     global k
-    q_res = get_result(pk, idu, k)
+    q_res, q_type = get_result(msg, idu, k)
     # print q_res
-    q = Querry(querry_term = pk, querry_result = q_res, timestamp = timezone.now())
+    q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
     q.save()
     # print q.querry_result
-    data = serializers.serialize('json', [q])
-    data = str(data)
-    data = data[1:]
-    data = data[:-1]
+    # data = serializers.serialize('json', [q])
+    # data = str(data)
+    # data = data[1:]
+    # data = data[:-1]
+    data = {}
+    data['querry_term'] = q.querry_term
+    #data['querry_result'] = q.querry_result
+    data_result = []
+    if q_type == "image":
+        sub_result = {}
+        sub_result['type'] = 'image'
+        sub_result['content'] = q_res
+        data_result.append(sub_result)
+    else:
+        sub_result = {}
+        sub_result['type'] = 'text'
+        sub_result['content'] = q_res
+        data_result.append(sub_result)
+    data['results'] = data_result
+    data = json.dumps(data)
     print data
-    # print data + "sdfsdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+    print '.'
+    print str(data)
+    # print data
     # print type(data[0])
     # print type(data)
     # print HttpResponse(data, content_type='application/json')
