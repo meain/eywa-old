@@ -26,7 +26,7 @@ def get_image(query):
             print item['title'] + "\n\t" + item['link']
         '''
         #Currently returning only the link to one image
-        print res
+        print res['items'][0]['link']
         return True, res['items'][0]['link']
 
 

@@ -36,8 +36,8 @@ def get_result(query, user_id, k):
             #return 'No image', "text"	#Hope it will never be used
             item['content'] = 'No image'
             item['type'] = "text"
-            res.append(item)
-            return res
+        res.append(item)
+        return res
     elif query.split(' ', 1)[0] == 'multiline':
         query = query.split(' ', 1)[1]
         if query == 'ii':
@@ -50,18 +50,18 @@ def get_result(query, user_id, k):
                 #return 'No image', "text"	#Hope it will never be used
                 item['content'] = 'No image'
                 item['type'] = "text"
-                res.append(item)
-                item = {}
-                wsuccess, wlink = iapi.get_image('two')
-                if wsuccess == True:
-                    #return wlink, "image"
-                    item['content'] = wlink
-                    item['type'] = "image"
-                else:
-                    #return 'No image', "text"	#Hope it will never be used
-                    item['content'] = 'No image'
-                    item['type'] = "text"
-                    res.append(item)
+            res.append(item)
+            item = {}
+            wsuccess, wlink = iapi.get_image('two')
+            if wsuccess == True:
+                #return wlink, "image"
+                item['content'] = wlink
+                item['type'] = "image"
+            else:
+                #return 'No image', "text"	#Hope it will never be used
+                item['content'] = 'No image'
+                item['type'] = "text"
+            res.append(item)
         elif query == 'it':
             wsuccess, wlink = iapi.get_image('placeholder')
             if wsuccess == True:
@@ -72,11 +72,11 @@ def get_result(query, user_id, k):
                 #return 'No image', "text"	#Hope it will never be used
                 item['content'] = 'No image'
                 item['type'] = "text"
-                res.append(item)
-                item = {}
-                item['content'] = 'Dummy text'
-                item['type'] = "text"
-                res.append(item)
+            res.append(item)
+            item = {}
+            item['content'] = 'Dummy text'
+            item['type'] = "text"
+            res.append(item)
         elif query == 'ti':
             item['content'] = 'Dummy text'
             item['type'] = "text"
@@ -91,7 +91,7 @@ def get_result(query, user_id, k):
                 #return 'No image', "text"	#Hope it will never be used
                 item['content'] = 'No image'
                 item['type'] = "text"
-                res.append(item)
+            res.append(item)
         elif query == 'tt':
             item['content'] = 'Dummy text one'
             item['type'] = "text"
