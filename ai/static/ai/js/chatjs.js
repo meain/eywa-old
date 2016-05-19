@@ -1,4 +1,49 @@
-
+ let gId = '';
+ let gName = '';
+ let gImage = '';
+ let gEmail = '';
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+//Save data
+gId = profile.getId();
+gName = profile.getName();
+gImage = profile.getImageUrl();
+gEmail = profile.getEmail();
+showSignInOrImg();
+}
+function checkIfSignedIn(){
+if (gId != ''){return true;
+}
+else{return false;
+    console.log("User not signed in");
+}
+}
+function signOut() {
+var auth2 = gapi.auth2.getAuthInstance();
+auth2.signOut().then(function () {
+console.log('User signed out.');
+gId = '';
+gName = '';
+gImage = '';
+gEmail = '';
+showSignInOrImg();
+});
+}
+function showSignInOrImg(){
+if (checkIfSignedIn()){
+$("#user-profile")[0].style.display = "block";
+$("#user-profile")[0].src = gImage
+$(".gsignin")[0].style.display = "none";
+}
+else{
+$(".gsignin")[0].style.display = "block";
+$("#user-profile")[0].style.display = "none";
+}
+}
 function isEmptyOrSpaces(str) {
     return str === null || str.match(/^ *$/) !== null;
 }
@@ -12,51 +57,19 @@ $.fn.imageLoad = function(fn) {
 }
 
 $(document).ready(function() {
+showSignInOrImg();
     var idu;
-    $('#chat-message-text').click(function() {
-        document.getElementById("user-profile").src = "../static/ai/img/profile.png";
-        gapi.client.load('plus', 'v1', function() {
-            var request = gapi.client.plus.people.get({
-                'userId': 'me'
-            });
-            request.execute(function(resp) {
-                console.log('Retrieved profile for:' + resp.displayName + ' ' + resp.image.url);
-                idu = resp;
-                if (resp.image.url != 'undefined') {
-                    document.getElementById("user-profile").src = resp.image.url;
-                }
-            });
-        });
-    });
-    $('#signinmodal').on('hidden.bs.modal', function() {
-        document.getElementById("user-profile").src = "../static/ai/img/profile.png";
-        gapi.client.load('plus', 'v1', function() {
-            var request = gapi.client.plus.people.get({
-                'userId': 'me'
-            });
-            request.execute(function(resp) {
-                console.log('Retrieved profile for:' + resp.displayName + ' ' + resp.image.url);
-                if (resp.image.url != 'undefined') {
-                    document.getElementById("user-profile").src = resp.image.url;
-                }
-            });
-        });
-    })
-    $("#signout").click(
-        function logout() {
-            gapi.auth.signOut();
-            //location.reload();
-            gapi.client.load('plus', 'v1', function() {
-                var request = gapi.client.plus.people.get({
-                    'userId': 'me'
-                });
-                request.execute(function(resp) {
-                    console.log('Retrieved profile for:' + resp.displayName);
-                    idu = resp;
-                });
-            });
-        }
-    );
+	$("#user-profile").click(function(){
+signOut();
+});
+$("#user-profile").hover(
+function(e){
+$("#user-profile")[0].src = "../static/ai/img/signout.png"
+},
+function(e){
+$("#user-profile")[0].src = gImage
+}
+);
     $("#chat-message-text").keyup(function(event) {
         if (event.keyCode == 13) {
             $("#chat-send-button").click();
@@ -65,20 +78,8 @@ $(document).ready(function() {
     $("#chat-send-button").click(function() {
         var msg = $("#chat-message-text").val();
         if (!isEmptyOrSpaces(msg)) {
-
-            gapi.client.load('plus', 'v1', function() {
-                var request = gapi.client.plus.people.get({
-                    'userId': 'me'
-                });
-
-                request.execute(function(resp) {
-                    console.log('Retrieved profile for:' + resp.displayName);
-                    idu = resp;
-                });
-            });
             var urlmsg = encodeURIComponent(msg);
-            idu = JSON.stringify(idu);
-            idu = encodeURIComponent(idu);
+            idu = gId;
             $.getJSON('/api/msg=' + urlmsg + '&id=' + idu, function(data, jqXHR) {
                 $("#chat-message-text").val("")
                 $("<div class = 'msg_user'>" + msg + "</div>").insertBefore(".reference");
@@ -86,7 +87,7 @@ $(document).ready(function() {
                     var item = data['results'][i];
                     if (item['type'] == 'text') {
                         $("<div class = 'msg_ai'>" + item['content'] + "</div>").insertBefore(".reference");
-                    } 
+                    }
                     else if (item['type'] == 'image') {
                         $("<div class = 'msg_ai'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
                         //Used so that the scroll is correct once the image is fully loaded

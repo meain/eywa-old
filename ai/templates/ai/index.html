@@ -5,38 +5,21 @@
 <div id="top" class="fill-page">
     <div id="data-container" class="container">
     <div class="top-panel">
-            <div class="col-lg-6 left-pane-heading">
-                <h1 id="left-pane-heading" class="text-center">eywa</h1>
+            <div class="col-lg-6">
+                <div class="left-pane-heading">
+                    <h1 id="left-pane-heading" class="text-center">eywa</h1>
+                </div>
             </div>
-            <div id="usr-img" class="usr-img col-lg-6">
-                <img id="user-profile" data-toggle="modal" data-target="#signinmodal" class="img-circle" width="50" height="50" src="../static/ai/img/profile.png" alt="google plus">
-            </div>
-            <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="siginModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="ModalLabel">Google+ sigin</h4>
-                        </div>
-                        <div class="model-contnt">
-                            <button class="g-signin"
-                                    id = "signinButton"
-                                    data-scope="https://www.googleapis.com/auth/plus.login"
-                                    data-clientid="854543947083-utnu74nr2d4rjke4pg0urcg6454aamqr.apps.googleusercontent.com"
-                                    data-theme="dark"
-                                    data-cookiepolicy="single_host_origin"
-                                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                                    data-width="wide"
-                                    data-dismiss="modal"
-                                    >
-                            </button>
-                            <button id="signout" class="btn btn-default" data-dismiss="modal">signout</button>
-                        </div>
+            <div id="usr-img" class="col-lg-6">
+                <div id="usr-img" class="usr-img">
+					<div class="float-right" tooltip="Signout">
+						<img id="user-profile" class="img-circle" width="50" height="50" src="../static/ai/img/profile.png" alt="google plus">
+					</div>
+                    <div class="gsignin">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
                 </div>
             </div>
-            <div id="profile"></div>
-            <!--<img id="gsignint-" src="../img/gp.png" alt="G+">-->
     </div>
         <div class="col-lg-4" id="left-pane">
             <!--<h1 id="left-pane-heading" class="text-center">eywa</h1>-->
@@ -47,7 +30,7 @@
             <div id="chat" class="chat-box-wrapper">
                 <div class="chat-messages" id="chat-msg-box">
                     <div class="msg_user">
-                        Hello eywa! 
+                        Hello eywa!
                     </div>
                     <div class="msg_ai">
                         Hey there.

@@ -4,6 +4,37 @@
     background-color: rgba(44, 62, 80,1.0);
     /*background-image: url("../img/back.svg");*/
 }
+.float-right{
+    float: right;
+}
+[tooltip]:before {
+    /* needed - do not touch */
+    content: attr(tooltip);
+    position: absolute;
+    opacity: 0;
+
+    /* customizable */
+    transition: all 0.15s ease;
+    padding: 2px;
+    color: #333;
+    border-radius: 5px;
+}
+
+[tooltip]:hover:before {
+    /* needed - do not touch */
+    opacity: 1;
+
+    /* customizable */
+    background: #808080;
+    color: white;
+    margin-top: 35px;
+    font-family: "Roboto", helvetica, sans-serif;
+    /* margin-left: 10px; */
+}
+
+[tooltip]:not([tooltip-persistent]):before {
+    pointer-events: none;
+}
 .top-panel{
     padding-left: 50px;
     padding-right: 2px;
@@ -29,10 +60,16 @@
 .usr-img{
     margin-top: 8px;
     margin-bottom: 5px;
+    cursor: pointer;
+}
+.gsignin{
+    float: right;
+    display: none;
+    margin-top: 8px;
 }
 #user-profile{
     float: right;
-    clear: right;
+    display: none;
 }
 #left-pane{
     /*background-color: #3498db;*/

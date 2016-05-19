@@ -49,52 +49,20 @@ def index(request):
         k = initialize_aiml()
     context = {'form' : form}
     return render(request, "ai/index.html", context)
-# def result(request):
-#     form = QuerryForm(request.POST or None)
-#     if form.is_valid():
-#         instance = form.save(commit = False)
-#         print instance.querry_term
-#         # Do your thing here
-#         ##
-#
-#
-#
-#         ##
-#         instance.save()
-#         return redirect('index')
-#     else:
-#         print "Not valid"
-#     context = {}
-#     return render(request, "ai/result.html", context)
-
-# def result(form):
-#     # print pk
-#     context = {}
-#     return render(request, "ai/result.html", context)
 
 class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     queryset = Querry.objects.all()
     serializer_class = AiSerializer
 
 def ajax_view(request, msg, idu):
-    user_data = idu
-    if 'id' in json.loads(idu):
-        idu = json.loads(idu)['displayName']
-    #print type(msg)
     print msg + "\n"  + idu
     # it is currently in unicode format and has to be converted into string
     urllib.unquote(msg).decode('utf8')
-    # print "booo"
+    urllib.unquote(idu).decode('utf8')
     global k
     q_res= get_result(msg, idu, k)
-    # print q_res
     q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
     q.save()
-    # print q.querry_result
-    # data = serializers.serialize('json', [q])
-    # data = str(data)
-    # data = data[1:]
-    # data = data[:-1]
     print q_res
     data = {}
     data['querry_term'] = q.querry_term
@@ -104,10 +72,4 @@ def ajax_view(request, msg, idu):
     print data
     print '.'
     print str(data)
-    # print data
-    # print type(data[0])
-    # print type(data)
-    # print HttpResponse(data, content_type='application/json')
     return HttpResponse(data, content_type='application/json')
-    # print JsonResponse(q, safe = False)
-    # return JsonResponse(json.dumps(data))
