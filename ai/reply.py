@@ -24,6 +24,25 @@ def get_result(query, user_id, k):
         item['type'] = "text"
         res.append(item)
         return res
+    elif query.split(' ', 1)[0] == 'what':
+        query = query.split(' ', 1)[1]
+        print "What : " + query
+        wsuccess, wlink = iapi.get_image(query)
+        if wsuccess == True:
+            #return wlink, "image"
+            item['content'] = wlink
+            item['type'] = "image"
+        else:
+            #return 'No image', "text"	#Hope it will never be used
+            item['content'] = 'No image'
+            item['type'] = "text"
+        res.append(item)
+        item = {}
+        wresult,wdat = wapi.frame_and_request("What is " + query)
+        item['content'] = wdat
+        item['type'] = "text"
+        res.append(item)
+        return res
     elif query.split(' ', 1)[0] == 'image':
         query = query.split(' ', 1)[1]
         print "Image query : " + query

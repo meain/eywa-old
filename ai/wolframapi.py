@@ -1,4 +1,5 @@
 import urllib
+import unicodedata
 from bs4 import BeautifulStoneSoup, BeautifulSoup #import beautifulsoup4 #Extra dependency (install it using pip) (used for parsing a single tag and also to encode the string to unicode format)
 import cgi
 
@@ -44,6 +45,10 @@ def make_request(querry):
     #Extracting the exact answer to the querry using Beautifulsoup
     soup = BeautifulSoup(data, 'html.parser')
     dat = soup.find('pod', title = 'Result')
+    if dat:
+        pass
+    else:
+        dat = soup.find('pod', title = 'Input interpretation')
     if soup.queryresult['success'] == 'false':
         if soup.queryresult.didyoumeans:
             exact_result = "Did you mean : " + str(soup.queryresult.didyoumeans.didyoumean)
@@ -52,7 +57,8 @@ def make_request(querry):
         else:
             exact_result = "Unfortunately, we could not retrive data on it."
     elif soup.queryresult['success'] == 'true':
-        exact_result = str(dat.plaintext.string)
+        exact_result = str(unicodedata.normalize('NFKD', dat.plaintext.string).encode('ascii','ignore')
+)
     else:
         exact_result = "Unfortunately, we could not retrive data on it."
     return data, exact_result # Data includes the complete xml data that is returned by wolfram alpha and exact_result contains just the answer
