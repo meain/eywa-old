@@ -1,7 +1,7 @@
-let gId = '';
-let gName = '';
-let gImage = '';
-let gEmail = '';
+var gId = '';
+var gName = '';
+var gImage = '';
+var gEmail = '';
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
