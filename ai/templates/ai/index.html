@@ -6,13 +6,16 @@
     <div id="data-container" class="container">
     <div class="top-panel">
             <div class="col-lg-6">
-                <div class="left-pane-heading">
-                    <h1 id="left-pane-heading" class="text-center">eywa</h1>
+                <div id="left-pane-heading">
+                    <h1 id="heading" class="">eywa</h1>
                 </div>
             </div>
-            <div id="usr-img" class="col-lg-6">
-                <div id="usr-img" class="usr-img">
-					<div class="float-right" tooltip="Signout">
+            <div class="col-lg-6">
+                <div id="usr-dat" class="usr-img">
+					<div id="user-name">
+						<!-- Would contain the user name -->
+					</div>
+					<div id="tooltip" class="float-right" tooltip="SIGNOUT">
 						<img id="user-profile" class="img-circle" width="50" height="50" src="../static/ai/img/profile.png" alt="google plus">
 					</div>
                     <div class="gsignin">
@@ -39,12 +42,10 @@
                 </div>
                 <div class="chat-bottom">
                     <form action="#" method="post" onSubmit="return false" id="chat-box">
-                        <div class="input-group">
-                            <input type="text" id="chat-message-text" class="form-control" placeholder="Type your message...">
+                            <input type="text" id="chat-message-text" class="" placeholder="message..">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" id="chat-send-button" type="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+                                <button class="btn" id="chat-send-button" type="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
                             </span>
-                        </div>
                     </form>
                 </div>
             </div>

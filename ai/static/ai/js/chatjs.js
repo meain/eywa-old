@@ -35,13 +35,19 @@ showSignInOrImg();
 }
 function showSignInOrImg(){
 if (checkIfSignedIn()){
-$("#user-profile")[0].style.display = "block";
-$("#user-profile")[0].src = gImage
+$("#user-profile")[0].style.display = "inline";
 $(".gsignin")[0].style.display = "none";
+$("#user-name")[0].style.display = "inline-block";
+$("#user-name")[0].innerHTML = gName;
+if(gImage.indexOf("http") > -1){
+	$("#user-profile")[0].src = gImage
+}
 }
 else{
-$(".gsignin")[0].style.display = "block";
+$(".gsignin")[0].style.display = "inline";
+$("#user-name")[0].style.display = "none";
 $("#user-profile")[0].style.display = "none";
+$("#user-name")[0].innerHTML = "";
 }
 }
 function isEmptyOrSpaces(str) {
