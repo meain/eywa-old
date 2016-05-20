@@ -85,12 +85,12 @@ $("#user-name")[0].innerHTML = gName;
     });
     $("#chat-send-button").click(function() {
         var msg = $("#chat-message-text").val();
+		$("#chat-message-text").val("")
         if (!isEmptyOrSpaces(msg)) {
             var urlmsg = encodeURIComponent(msg);
             idu = gId;
+			$("<div class = 'msg_user'>" + msg + "</div>").insertBefore(".reference");
             $.getJSON('/api/msg=' + urlmsg + '&id=' + idu, function(data, jqXHR) {
-                $("#chat-message-text").val("")
-                $("<div class = 'msg_user'>" + msg + "</div>").insertBefore(".reference");
                 for (var i = 0; i < data['resultsno']; i++) {
                     var item = data['results'][i];
                     if (item['type'] == 'text') {
