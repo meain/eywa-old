@@ -71,9 +71,11 @@ signOut();
 $("#user-profile").hover(
 function(e){
 $("#user-profile")[0].src = "../static/ai/img/signout.png"
+$("#user-name")[0].innerHTML = "Sign Out";
 },
 function(e){
 $("#user-profile")[0].src = gImage
+$("#user-name")[0].innerHTML = gName;
 }
 );
     $("#chat-message-text").keyup(function(event) {
