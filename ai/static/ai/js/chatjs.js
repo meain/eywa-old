@@ -90,6 +90,7 @@ $("#user-name")[0].innerHTML = gName;
             var urlmsg = encodeURIComponent(msg);
             idu = gId;
 			$("<div class = 'msg_user'>" + msg + "</div>").insertBefore(".reference");
+			$("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
             $.getJSON('/api/msg=' + urlmsg + '&id=' + idu, function(data, jqXHR) {
                 for (var i = 0; i < data['resultsno']; i++) {
                     var item = data['results'][i];
