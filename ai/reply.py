@@ -15,7 +15,7 @@ def get_result(query, user_id, k):
         item['type'] = "text"
         res.append(item)
         return res
-    elif query.split(' ', 1)[0] == 'wolfram':
+    elif query.split(' ', 1)[0] == 'wolfram' and len(query.split(' ', 1)) > 1:
         query = query.split(' ', 1)[1]
         print "Wolfram query : " + query
         wresult,wdat = wapi.frame_and_request(query)
@@ -24,7 +24,7 @@ def get_result(query, user_id, k):
         item['type'] = "text"
         res.append(item)
         return res
-    elif query.split(' ', 1)[0] == 'what':
+    elif query.split(' ', 1)[0] == 'what' and len(query.split(' ', 1)) > 1:
         query = query.split(' ', 1)[1]
         print "What : " + query
         wsuccess, wlink = iapi.get_image(query)
@@ -43,7 +43,7 @@ def get_result(query, user_id, k):
         item['type'] = "text"
         res.append(item)
         return res
-    elif query.split(' ', 1)[0] == 'image':
+    elif query.split(' ', 1)[0] == 'image' and len(query.split(' ', 1)) > 1:
         query = query.split(' ', 1)[1]
         print "Image query : " + query
         wsuccess, wlink = iapi.get_image(query)
@@ -57,7 +57,7 @@ def get_result(query, user_id, k):
             item['type'] = "text"
         res.append(item)
         return res
-    elif query.split(' ', 1)[0] == 'multiline':
+    elif query.split(' ', 1)[0] == 'multiline' and len(query.split(' ', 1)) > 1:
         query = query.split(' ', 1)[1]
         if query == 'ii':
             wsuccess, wlink = iapi.get_image('one')
@@ -122,7 +122,8 @@ def get_result(query, user_id, k):
         return res
     else :
         # the aiml takes time to load, will have to run it in a parallel thread
-        item['content'] = reply_aiml(query,k)
+        item['content'] = "Not connected to aiml!"
+        # item['content'] = reply_aiml(query,k)
         item['type'] = 'text'
         res.append(item)
         return res
