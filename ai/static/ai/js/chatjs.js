@@ -53,15 +53,19 @@ $("#user-name")[0].innerHTML = "";
 function isEmptyOrSpaces(str) {
     return str === null || str.match(/^ *$/) !== null;
 }
-$.fn.imageLoad = function(fn) {
-    this.load(fn);
-    this.each(function() {
-        if (this.complete && this.naturalWidth !== 0) {
-            $(this).trigger('load');
-        }
-    });
-}
+//So that scroll can be adjusted
+function getImageSize(img, callback) {
+var $img = $(img);
 
+var wait = setInterval(function() {
+var w = $img[0].naturalWidth,
+h = $img[0].naturalHeight;
+if (w && h) {
+clearInterval(wait);
+callback.apply(this, [w, h]);
+}
+}, 30);
+}
 $(document).ready(function() {
 showSignInOrImg();
     var idu;
@@ -99,10 +103,9 @@ $("#user-name")[0].innerHTML = gName;
                     }
                     else if (item['type'] == 'image') {
                         $("<div class = 'msg_ai'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
-                        //Used so that the scroll is correct once the image is fully loaded
-                        $('img.img_ai').imageLoad(function() {
-                            $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
-                        });
+						getImageSize($('.img_ai').last(), function(width, height){
+						     $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight + height);
+						});
                     }
                     $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
                 };

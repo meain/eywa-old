@@ -8,36 +8,6 @@ body{
 .float-right{
     float: right;
 }
-[tooltip]:before {
-    /* needed - do not touch */
-    content: attr(tooltip);
-    position: absolute;
-    opacity: 0;
-
-    /* customizable */
-    transition: all 0.15s ease;
-    padding: 1px;
-    color: #333;
-    border-radius: 5px;
-}
-
-[tooltip]:hover:before {
-    /* needed - do not touch */
-    opacity: 1;
-
-    /* customizable */
-    background: #808080;
-    color: white;
-    margin-top: 35px;
-    font-family: helvetica, sans-serif;
-    font-size: 10px;
-    font-weight: 100;
-    /* margin-left: -5px; */
-}
-
-[tooltip]:not([tooltip-persistent]):before {
-    pointer-events: none;
-}
 .top-panel{
     padding-left: 2px;
     padding-right: 2px;
