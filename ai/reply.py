@@ -56,6 +56,11 @@ def get_result(query, user_id, k):
             item['content'] = 'No image'
             item['type'] = "text"
         res.append(item)
+        item = {}
+        text = "Here is an image of ' " + query + " '"
+        item['content'] = text
+        item['type'] = "text"
+        res.append(item)
         return res
     elif query.split(' ', 1)[0] == 'multiline' and len(query.split(' ', 1)) > 1:
         query = query.split(' ', 1)[1]
