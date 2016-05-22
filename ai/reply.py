@@ -2,139 +2,95 @@ from aimlbot import *
 import wolframapi as wapi
 import imageapi as iapi
 
+def check_if(query, text):
+    if query == text:
+        return True
+    else:
+        return False
+
+def check_if_arg(query, text):
+    if query.split(' ', 1)[0] == text and len(query.split(' ', 1)) > 1:
+        return True
+    else:
+        return False
+
+def get_query_arg(query):
+    return query.split(' ', 1)[1]
+
+def text_result(text):
+    item = {}
+    item['content'] = text
+    item['type'] = "text"
+    return item
+
+def image_result(query):
+    item ={}
+    wsuccess, wlink = iapi.get_image(query)
+    if wsuccess == True:
+        item['content'] = wlink
+        item['type'] = "image"
+    else:
+        item['content'] = 'No image'
+        item['type'] = "text"
+    return item
+
+
+def wolfram_result(query):
+    item = {}
+    wresult,wdat = wapi.frame_and_request(query)
+    item['content'] = wdat
+    item['type'] = "text"
+    return item
+
+def aiml_result(query):
+    item = {}
+    # the aiml takes time to load, will have to run it in a parallel thread
+    item['content'] = "Not connected to aiml!"
+    # item['content'] = reply_aiml(query,k)
+    item['type'] = 'text'
+    return item
+
+
 def get_result(query, user_id, k):
     res = []
-    item = {}
     '''
     This fucniton diverts the querry to different routes
     Returns the result and the type of result
     '''
-    if query == "hey":
-        #return ("Hey " + user_id), "text"
-        item['content'] = "Hey " + user_id
-        item['type'] = "text"
-        res.append(item)
+    if check_if(query,"hey"):
+        res.append(text_result("Hai " + user_id))
         return res
-    elif query.split(' ', 1)[0] == 'wolfram' and len(query.split(' ', 1)) > 1:
-        query = query.split(' ', 1)[1]
+    elif check_if_arg(query, "wolfram"):
         print "Wolfram query : " + query
-        wresult,wdat = wapi.frame_and_request(query)
-        #return wdat, "wolfram"
-        item['content'] = wdat
-        item['type'] = "text"
-        res.append(item)
+        res.append(wolfram_result(get_query_arg(query)))
         return res
-    elif query.split(' ', 1)[0] == 'what' and len(query.split(' ', 1)) > 1:
-        query = query.split(' ', 1)[1]
+    elif check_if_arg(query, "what"):
         print "What : " + query
-        wsuccess, wlink = iapi.get_image(query)
-        if wsuccess == True:
-            #return wlink, "image"
-            item['content'] = wlink
-            item['type'] = "image"
-        else:
-            #return 'No image', "text"	#Hope it will never be used
-            item['content'] = 'No image'
-            item['type'] = "text"
-        res.append(item)
-        item = {}
-        wresult,wdat = wapi.frame_and_request("What is " + query)
-        item['content'] = wdat
-        item['type'] = "text"
-        res.append(item)
+        res.append(image_result(get_query_arg(query)))
+        res.append(wolfram_result(get_query_arg(query)))
         return res
-    elif query.split(' ', 1)[0] == 'image' and len(query.split(' ', 1)) > 1:
-        query = query.split(' ', 1)[1]
+    elif check_if_arg(query, "image"):
         print "Image query : " + query
-        wsuccess, wlink = iapi.get_image(query)
-        if wsuccess == True:
-            #return wlink, "image"
-            item['content'] = wlink
-            item['type'] = "image"
-        else:
-            #return 'No image', "text"	#Hope it will never be used
-            item['content'] = 'No image'
-            item['type'] = "text"
-        res.append(item)
-        item = {}
-        text = "Here is an image of ' " + query + " '"
-        item['content'] = text
-        item['type'] = "text"
-        res.append(item)
+        res.append(image_result(get_query_arg(query)))
+        res.append(text_result("Here is an image of ' " + get_query_arg(query) + " '"))
         return res
-    elif query.split(' ', 1)[0] == 'multiline' and len(query.split(' ', 1)) > 1:
-        query = query.split(' ', 1)[1]
-        if query == 'ii':
-            wsuccess, wlink = iapi.get_image('one')
-            if wsuccess == True:
-                #return wlink, "image"
-                item['content'] = wlink
-                item['type'] = "image"
-            else:
-                #return 'No image', "text"	#Hope it will never be used
-                item['content'] = 'No image'
-                item['type'] = "text"
-            res.append(item)
-            item = {}
-            wsuccess, wlink = iapi.get_image('two')
-            if wsuccess == True:
-                #return wlink, "image"
-                item['content'] = wlink
-                item['type'] = "image"
-            else:
-                #return 'No image', "text"	#Hope it will never be used
-                item['content'] = 'No image'
-                item['type'] = "text"
-            res.append(item)
-        elif query == 'it':
-            wsuccess, wlink = iapi.get_image('placeholder')
-            if wsuccess == True:
-                #return wlink, "image"
-                item['content'] = wlink
-                item['type'] = "image"
-            else:
-                #return 'No image', "text"	#Hope it will never be used
-                item['content'] = 'No image'
-                item['type'] = "text"
-            res.append(item)
-            item = {}
-            item['content'] = 'Dummy text'
-            item['type'] = "text"
-            res.append(item)
-        elif query == 'ti':
-            item['content'] = 'Dummy text'
-            item['type'] = "text"
-            res.append(item)
-            item = {}
-            wsuccess, wlink = iapi.get_image('placeholder')
-            if wsuccess == True:
-                #return wlink, "image"
-                item['content'] = wlink
-                item['type'] = "image"
-            else:
-                #return 'No image', "text"	#Hope it will never be used
-                item['content'] = 'No image'
-                item['type'] = "text"
-            res.append(item)
-        elif query == 'tt':
-            item['content'] = 'Dummy text one'
-            item['type'] = "text"
-            res.append(item)
-            item = {}
-            item['content'] = 'Dummy text two'
-            item['type'] = "text"
-            res.append(item)
+    elif check_if_arg(query, "multiline"):
+        print "Multiline check"
+        arg = get_query_arg(query)
+        if arg == 'ii':
+            res.append(image_result("one"))
+            res.append(image_result("two"))
+        elif arg == 'it':
+            res.append(image_result("placeholder"))
+            res.append(text_result("Dummy text"))
+        elif arg == 'ti':
+            res.append(text_result("Dummy text"))
+            res.append(image_result("placeholder"))
+        elif arg == 'tt':
+            res.append(text_result("Dummy text one"))
+            res.append(text_result("Dummy text two"))
         return res
     else :
-        # the aiml takes time to load, will have to run it in a parallel thread
-        item['content'] = "Not connected to aiml!"
-        # item['content'] = reply_aiml(query,k)
-        item['type'] = 'text'
-        res.append(item)
+        print "Aiml query : " + query
+        res.append(aiml_result(query))
         return res
-'''
-get the user id then we can use it from the python insterface so as to get the information from the google server by querrying with the id
-a possible problem is that our python app wont be able queey directly -
--- either register python app and chang the whole login thing into python
--- or pipe python querry through the html server ;)
-'''

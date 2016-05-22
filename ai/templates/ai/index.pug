@@ -13,21 +13,22 @@
           img#user-profile.img-circle(width='50', height='50', src='../static/ai/img/profile.png', alt='google plus')
           .gsignin
             .g-signin2(data-onsuccess='onSignIn')
-    #left-pane.col-lg-4
-      .data-pane
-    #right-pane.col-lg-8
-      #chat.chat-box-wrapper
-        #chat-msg-box.chat-messages
-          .msg_user
-            | Hello eywa
-          .msg_ai
-            | Hey, what's up? 
-          .reference
-        .chat-bottom
-          form#chat-box(action='#', method='post', onsubmit='return false', autocomplete='off')
-            input#chat-message-text(type='text', placeholder='your message..')
-            span.input-group-btn
-              button#chat-send-button.btn(type='button')
-                span.glyphicon.glyphicon-menu-right(aria-hidden='true')
+    .bottom-panel
+        #right-pane.col-md-8.col-md-push-4
+          #chat.chat-box-wrapper
+            #chat-msg-box.chat-messages
+              .msg_user
+                | Hello eywa
+              .msg_ai
+                | Hey, what's up? 
+              .reference
+            .chat-bottom
+              form#chat-box(action='#', method='post', onsubmit='return false', autocomplete='off')
+                input#chat-message-text(type='text', placeholder='your message..')
+                span.input-group-btn
+                  button#chat-send-button.btn(type='button')
+                    span.glyphicon.glyphicon-menu-right(aria-hidden='true')
+        #left-pane.col-md-4.col-md-pull-8
+          .data-pane
 | {% endblock %}
 

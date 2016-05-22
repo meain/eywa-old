@@ -55,7 +55,8 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AiSerializer
 
 def ajax_view(request, msg, idu):
-    print msg + "\n"  + idu
+    print "\n\n------------------------------------------------------------------"
+    print "User message : " + msg + "\nUser id : "  + idu + "\n"
     # it is currently in unicode format and has to be converted into string
     urllib.unquote(msg).decode('utf8')
     urllib.unquote(idu).decode('utf8')
@@ -63,13 +64,12 @@ def ajax_view(request, msg, idu):
     q_res= get_result(msg, idu, k)
     q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
     q.save()
-    print q_res
+    print "Result : \n" + str(q_res)
     data = {}
     data['querry_term'] = q.querry_term
     data['resultsno'] = len(q_res)
     data['results'] = q_res
     data = json.dumps(data)
-    print data
-    print '.'
-    print str(data)
+    print "\nJson response : \n" + data
+    print "------------------------------------------------------------------\n\n"
     return HttpResponse(data, content_type='application/json')

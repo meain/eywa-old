@@ -20,22 +20,24 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4" id="left-pane">
-      <div class="data-pane"></div>
-    </div>
-    <div class="col-lg-8" id="right-pane">
-      <div class="chat-box-wrapper" id="chat">
-        <div class="chat-messages" id="chat-msg-box">
-          <div class="msg_user">Hello eywa</div>
-          <div class="msg_ai">Hey, what's up? </div>
-          <div class="reference"></div>
+    <div class="bottom-panel">
+      <div class="col-md-8 col-md-push-4" id="right-pane">
+        <div class="chat-box-wrapper" id="chat">
+          <div class="chat-messages" id="chat-msg-box">
+            <div class="msg_user">Hello eywa</div>
+            <div class="msg_ai">Hey, what's up? </div>
+            <div class="reference"></div>
+          </div>
+          <div class="chat-bottom">
+            <form id="chat-box" action="#" method="post" onsubmit="return false" autocomplete="off">
+              <input id="chat-message-text" type="text" placeholder="your message.."/><span class="input-group-btn">
+                <button class="btn" id="chat-send-button" type="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button></span>
+            </form>
+          </div>
         </div>
-        <div class="chat-bottom">
-          <form id="chat-box" action="#" method="post" onsubmit="return false" autocomplete="off">
-            <input id="chat-message-text" type="text" placeholder="your message.."/><span class="input-group-btn">
-              <button class="btn" id="chat-send-button" type="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button></span>
-          </form>
-        </div>
+      </div>
+      <div class="col-md-4 col-md-pull-8" id="left-pane">
+        <div class="data-pane"></div>
       </div>
     </div>
   </div>
