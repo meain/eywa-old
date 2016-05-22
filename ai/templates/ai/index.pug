@@ -1,0 +1,34 @@
+| {% extends "ai/base.html" %}
+| {% block content%}
+#top.fill-page
+  #data-container.container
+    .top-panel
+      .col-lg-6
+        #left-pane-heading
+          h1#heading eywa
+      .col-lg-6
+        #usr-dat.usr-img
+          #user-name
+            // Would contain the user name
+          img#user-profile.img-circle(width='50', height='50', src='../static/ai/img/profile.png', alt='google plus')
+          .gsignin
+            .g-signin2(data-onsuccess='onSignIn')
+    #left-pane.col-lg-4
+      // <h1 id="left-pane-heading" class="text-center">eywa</h1>
+      .data-pane
+    #right-pane.col-lg-8
+      #chat.chat-box-wrapper
+        #chat-msg-box.chat-messages
+          .msg_user
+            | Hello eywa!
+          .msg_ai
+            | Hey there.
+          .reference
+        .chat-bottom
+          form#chat-box(action='#', method='post', onsubmit='return false', autocomplete='off')
+            input#chat-message-text(type='text', placeholder='message..')
+            span.input-group-btn
+              button#chat-send-button.btn(type='button')
+                span.glyphicon.glyphicon-menu-right(aria-hidden='true')
+| {% endblock %}
+
