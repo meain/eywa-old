@@ -31,10 +31,11 @@ body
     text-align left
 
 #heading
-    margin-bottom 5px
+    margin-bottom 6px
     margin-top 5px
     padding-top 3px
     font-family 'Pacifico', cursive
+    color rgba(230, 126, 34, 0.70)
 
 #usr-dat
     border-bottom 5px
@@ -58,8 +59,8 @@ body
     display none
     margin-right 20px
     margin-top 10px
-    font-family "Quicksand", monaco, Consolas, monospace
-    font-size 16px
+    font-family "Open Sans", monaco, Consolas, monospace
+    font-size 14px
 
 .bottom-panel
     height calc(100% - 70px)
@@ -115,7 +116,7 @@ body
     box-shadow 0 0 0 #B2B2B2
     color black
     float left
-    font-family monaco, Consolas, monospace
+    font-family "Open Sans", sans-serif
     height 34px
     outline none
     padding-left 13px
@@ -127,8 +128,8 @@ body
     padding 30px
     margin-bottom 10px
     width 100%
-    font-family monaco, Consolas, monospace
-    font-size 13px
+    font-family "Open Sans", sans-serif
+    font-size 15px
 @media (max-width : 992px)
     .chat-messages
         padding 0px

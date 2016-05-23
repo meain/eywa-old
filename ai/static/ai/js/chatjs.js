@@ -4,7 +4,7 @@ var gImage = '';
 var gEmail = '';
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
-	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	console.log('ID: ' + profile.getId());
 	console.log('Name: ' + profile.getName());
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail());
@@ -67,6 +67,7 @@ function getImageSize(img, callback) {
 	}, 30);
 }
 $(document).ready(function() {
+	$("#chat-message-text").focus();
 	showSignInOrImg();
 	var idu;
 	$("#user-profile").click(function(){
