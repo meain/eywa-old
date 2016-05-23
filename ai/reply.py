@@ -42,11 +42,11 @@ def wolfram_result(query):
     item['type'] = "text"
     return item
 
-def aiml_result(query):
+def aiml_result(query, k):
     item = {}
     # the aiml takes time to load, will have to run it in a parallel thread
-    item['content'] = "Not connected to aiml!"
-    # item['content'] = reply_aiml(query,k)
+    #item['content'] = "Not connected to aiml!"
+    item['content'] = reply_aiml(query,k)
     item['type'] = 'text'
     return item
 
@@ -58,7 +58,7 @@ def get_result(query, user_name, k):
     Returns the result and the type of result
     '''
     if check_if(query, "hey"):
-        res.append(text_result("Hey, " + user_name))
+        res.append(text_result("Hey " + user_name))
         return res
     elif check_if(query, "Show me a picture of a dog"):
         res.append(image_result("boo"))
@@ -104,5 +104,5 @@ def get_result(query, user_name, k):
         return res
     else :
         print "Aiml query : " + query
-        res.append(aiml_result(query))
+        res.append(aiml_result(query, k))
         return res
