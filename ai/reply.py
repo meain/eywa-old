@@ -51,17 +51,14 @@ def aiml_result(query):
     return item
 
 
-def get_result(query, user_id, k):
+def get_result(query, user_name, k):
     res = []
     '''
     This fucniton diverts the querry to different routes
     Returns the result and the type of result
     '''
-    if check_if(query,"hiy"):
-        res.append(text_result("Hai " + user_id))
-        return res
-    elif check_if(query, "hey"):
-        res.append(text_result("Hey, Good evening Abin"))
+    if check_if(query, "hey"):
+        res.append(text_result("Hey, " + user_name))
         return res
     elif check_if(query, "Show me a picture of a dog"):
         res.append(image_result("boo"))

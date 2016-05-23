@@ -24,6 +24,7 @@
               .reference
             .chat-bottom
               form#chat-box(action='#', method='post', onsubmit='return false', autocomplete='off')
+                | {% csrf_token %}
                 input#chat-message-text(type='text', placeholder='your message..')
                 span.input-group-btn
                   button#chat-send-button.btn(type='button')

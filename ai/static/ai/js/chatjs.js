@@ -37,8 +37,8 @@ function showSignInOrImg(){
 	if (checkIfSignedIn()){
 		$("#user-profile")[0].style.display = "inline";
 		$(".gsignin")[0].style.display = "none";
-		$("#user-name")[0].style.display = "inline-block";
-		$("#user-name")[0].innerHTML = gName;
+        $("#user-name")[0].style.display = "inline-block";
+        $("#user-name")[0].innerHTML = gName;
 		if(gImage.indexOf("http") > -1){
 			$("#user-profile")[0].src = gImage
 		}
@@ -92,25 +92,38 @@ $(document).ready(function() {
 		var msg = $("#chat-message-text").val();
 		$("#chat-message-text").val("")
 		if (!isEmptyOrSpaces(msg)) {
-			var urlmsg = encodeURIComponent(msg);
-			idu = gId;
 			$("<div class = 'msg_user'>" + msg + "</div>").insertBefore(".reference");
 			$("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
-			$.getJSON('/api/msg=' + urlmsg + '&id=' + idu, function(data, jqXHR) {
-				for (var i = 0; i < data['resultsno']; i++) {
-					var item = data['results'][i];
-					if (item['type'] == 'text') {
-						$("<div class = 'msg_ai'>" + item['content'] + "</div>").insertBefore(".reference");
-					}
-					else if (item['type'] == 'image') {
-						$("<div class = 'msg_ai'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
-						getImageSize($('.img_ai').last(), function(width, height){
-							$("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight + height);
-						});
-					}
-					$("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
-				};
-			});
+            var reply_request = $.ajax({
+                type:'POST',
+                url:'api/',
+                data:{
+                    umsg:msg,
+                    uid:gId,
+                    uname:gName,
+                    uemail:gEmail,
+                    uimage:gImage,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+            });
+            reply_request.done(function(data){
+                for (var i = 0; i < data['resultsno']; i++) {
+                    var item = data['results'][i];
+                    if (item['type'] == 'text') {
+                        $("<div class = 'msg_ai'>" + item['content'] + "</div>").insertBefore(".reference");
+                    }
+                    else if (item['type'] == 'image') {
+                        $("<div class = 'msg_ai'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
+                        getImageSize($('.img_ai').last(), function(width, height){
+                            $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight + height);
+                        });
+                    }
+                    $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
+                };
+            });
+            reply_request.fail(function( jqXHR, textStatus ) {
+                console.log( "Request failed: " + textStatus );
+            });
 		}
 	});
 });

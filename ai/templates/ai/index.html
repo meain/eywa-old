@@ -29,7 +29,7 @@
             <div class="reference"></div>
           </div>
           <div class="chat-bottom">
-            <form id="chat-box" action="#" method="post" onsubmit="return false" autocomplete="off">
+            <form id="chat-box" action="#" method="post" onsubmit="return false" autocomplete="off">{% csrf_token %}
               <input id="chat-message-text" type="text" placeholder="your message.."/><span class="input-group-btn">
                 <button class="btn" id="chat-send-button" type="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button></span>
             </form>

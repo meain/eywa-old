@@ -54,14 +54,14 @@ class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
     queryset = Querry.objects.all()
     serializer_class = AiSerializer
 
-def ajax_view(request, msg, idu):
+def ajax_view(request, msg, id):
     print "\n\n------------------------------------------------------------------"
-    print "User message : " + msg + "\nUser id : "  + idu + "\n"
+    print "User message : " + msg + "\nUser id : "  + id + "\n"
     # it is currently in unicode format and has to be converted into string
     urllib.unquote(msg).decode('utf8')
-    urllib.unquote(idu).decode('utf8')
+    urllib.unquote(id).decode('utf8')
     global k
-    q_res= get_result(msg, idu, k)
+    q_res= get_result(msg, id, k)
     q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
     q.save()
     print "Result : \n" + str(q_res)
@@ -73,3 +73,34 @@ def ajax_view(request, msg, idu):
     print "\nJson response : \n" + data
     print "------------------------------------------------------------------\n\n"
     return HttpResponse(data, content_type='application/json')
+
+def reply(request):
+    if request.method == 'POST':
+       msg = request.POST['umsg']
+       id = request.POST['uid']
+       name = request.POST['uname']
+       email = request.POST['uemail']
+       image = request.POST['uimage']
+       print "\n\n------------------------------------------------------------------"
+       print "User message : " + msg + "\nUser id : "  + id + "\n"
+       # it is currently in unicode format and has to be converted into string
+       urllib.unquote(msg).decode('utf8')
+       urllib.unquote(id).decode('utf8')
+       global k
+       q_res= get_result(msg, name, k)
+       q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
+       q.save()
+       print "Result : \n" + str(q_res)
+       data = {}
+       data['querry_term'] = q.querry_term
+       data['resultsno'] = len(q_res)
+       data['results'] = q_res
+       data = json.dumps(data)
+       print "\nJson response : \n" + data
+       print "------------------------------------------------------------------\n\n"
+       return HttpResponse(data, content_type='application/json')
+       return HttpResponse('')
+
+
+
+
