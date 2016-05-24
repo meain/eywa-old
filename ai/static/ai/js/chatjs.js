@@ -116,13 +116,6 @@ $(document).ready(function() {
                         $("<div class = 'msg_ai'><div class='zoomable'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div></div>").insertBefore(".reference");
                         getImageSize($('.img_ai').last(), function(width, height){
                             $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight + height);
-                            Zoomerang.config({
-                                maxHeight: 500,
-                                maxWidth: 500,
-                                bgColor: '#000',
-                                bgOpacity: .85,
-                            });
-                            Zoomerang.listen('.zoomable');
                         });
                     }
                     $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
