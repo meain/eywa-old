@@ -161,6 +161,7 @@ body
     padding-top 10px
     padding-bottom 10px
     word-wrap break-word
+    /* animation-delay: 1s; */
 
 .img_ai
     border-radius 4px 35px 35px 4px
