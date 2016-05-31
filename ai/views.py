@@ -12,7 +12,7 @@ from multiprocessing import Queue
 
 # Create your views here.
 from reply import *
-from aimlbot import *
+from apis.aimlbot import *
 k = ''
 from .forms import QuerryForm
 
