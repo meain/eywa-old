@@ -12,7 +12,7 @@ from multiprocessing import Queue
 
 # Create your views here.
 from reply import *
-from aimlbot import *
+from apis.aimlbot import *
 k = ''
 from .forms import QuerryForm
 
@@ -33,7 +33,7 @@ from .forms import QuerryForm
 
 def load_aiml():
     global k
-    # k = initialize_aiml()
+    k = initialize_aiml()
     print "Still loading"
 
 def index(request):

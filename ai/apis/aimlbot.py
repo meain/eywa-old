@@ -11,7 +11,7 @@ def initialize_aiml():
     # Use the 'learn' method to load the contents
     # of an AIML file into the Kernel.
     # k.learn("std-startup.xml")
-    filenames = glob.glob('ai/alice/*.aiml')
+    filenames = glob.glob('ai/apis/alice/*.aiml')
     print filenames
     print "Initialization started"
     for x in filenames:
