@@ -1,3 +1,4 @@
 *.pyc
 /static/static_root
 db.sqlite*
+tags
