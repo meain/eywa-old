@@ -33,7 +33,7 @@ from .forms import QuerryForm
 
 def load_aiml():
     global k
-    # k = initialize_aiml()
+    k = initialize_aiml()
     print "Still loading"
 
 def index(request):
