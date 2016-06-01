@@ -66,6 +66,15 @@ function getImageSize(img, callback) {
         }
     }, 30);
 }
+//Funciton to do animaiton
+$.fn.extend({
+  animateCss : function(animationName){
+    var animationEnd = 'webkitAnimationEnd onanimationend animationend' ;
+    $(this).addClass('animated ' + animationName).one(animationEnd, function(){
+        $(this).removeClass('animated ' + animationName);
+    });
+  }
+});
 $(document).ready(function() {
     $("#chat-message-text").focus();
     showSignInOrImg();
@@ -90,8 +99,8 @@ $(document).ready(function() {
     });
     $("#chat-send-button").click(function() {
         var msg = $("#chat-message-text").val();
-        $("#chat-message-text").val("")
         if (!isEmptyOrSpaces(msg)) {
+            $("#chat-message-text").val("")
             $("<div class = 'msg_user animated slideInRight'>" + msg + "</div>").insertBefore(".reference");
             $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
             var reply_request = $.ajax({
@@ -124,6 +133,9 @@ $(document).ready(function() {
             reply_request.fail(function( jqXHR, textStatus ) {
                 console.log( "Request failed: " + textStatus );
             });
+        }
+        else {
+            $("#chat-send-button").animateCss('tada');
         }
     });
 });
