@@ -124,7 +124,7 @@ body
     padding-right 20px
     padding-top 7px
     width 50px
-    animation-duration .7s
+    animation-duration .5s
 
 #chat-message-text
     background-color #CACFD2
