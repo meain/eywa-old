@@ -76,7 +76,10 @@ $.fn.extend({
   }
 });
 $('#chat-msg-box').scroll(function(e){
-    $('#chat-msg-box').finish();
+console.log($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight);
+   if($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight){
+       $('#chat-msg-box').finish();
+   }
 });
 $(document).ready(function() {
     $("#chat-message-text").focus();
