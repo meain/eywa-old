@@ -102,7 +102,8 @@ $(document).ready(function() {
         if (!isEmptyOrSpaces(msg)) {
             $("#chat-message-text").val("")
             $("<div class = 'msg_user animated slideInRight'>" + msg + "</div>").insertBefore(".reference");
-            $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
+            $("#chat-msg-box").stop();
+            $("#chat-msg-box").animate({scrollTop:$("#chat-msg-box")[0].scrollHeight}, 1000);
             var reply_request = $.ajax({
                                 type:'POST',
                                 url:'api/',
@@ -124,10 +125,12 @@ $(document).ready(function() {
                     else if (item['type'] == 'image') {
                         $("<div class = 'msg_ai animated slideInLeft'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
                         getImageSize($('.img_ai').last(), function(width, height){
-                            $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight + height);
+                            $("#chat-msg-box").stop();
+                            $("#chat-msg-box").animate({scrollTop:$("#chat-msg-box")[0].scrollHeight + height}, 1000);
                         });
                     }
-                    $("#chat-msg-box").scrollTop($("#chat-msg-box")[0].scrollHeight);
+                    $("#chat-msg-box").stop();
+                    $("#chat-msg-box").animate({scrollTop:$("#chat-msg-box")[0].scrollHeight}, 1000);
                 };
             });
             reply_request.fail(function( jqXHR, textStatus ) {
