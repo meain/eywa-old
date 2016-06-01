@@ -75,6 +75,9 @@ $.fn.extend({
     });
   }
 });
+$('#chat-msg-box').scroll(function(e){
+    $('#chat-msg-box').finish();
+});
 $(document).ready(function() {
     $("#chat-message-text").focus();
     showSignInOrImg();
