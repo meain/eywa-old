@@ -1,36 +1,35 @@
 | {% extends "ai/base.html" %}
 | {% block content%}
 #top.fill-page
-  #data-container.container
-    #box-container
-        .top-panel
-          .col-lg-6
-            #left-pane-heading
-              h1#heading eywa
-          .col-lg-6
-            #usr-dat.usr-img
-              #user-name
-                // Would contain the user name
-              img#user-profile.img-circle(width='50', height='50', src='../static/ai/images/profile.png', alt='google plus')
-              .gsignin
-                .g-signin2(data-onsuccess='onSignIn')
-        .bottom-panel
-            #right-pane.col-md-8.col-md-push-4
-              #chat.chat-box-wrapper
-                #chat-msg-box.chat-messages
-                  .msg_user
-                    | Hello eywa
-                  .msg_ai
-                    | Hey, what's up? 
-                  .reference
-                .chat-bottom
-                  form#chat-box(action='#', method='post', onsubmit='return false', autocomplete='off')
-                    | {% csrf_token %}
-                    input#chat-message-text(type='text', placeholder='your message..')
-                    span.input-group-btn
-                      button#chat-send-button.btn(type='button')
-                        span.glyphicon.glyphicon-menu-right(aria-hidden='true')
-            #left-pane.col-md-4.col-md-pull-8
-              .data-pane
+    #data-container.container
+        #box-container
+                .top-panel
+                    .col-lg-6
+                        #left-pane-heading
+                            h1#heading eywa
+                    .col-lg-6
+                        #usr-dat.usr-img
+                            #user-name
+                                // Would contain the user name
+                            img#user-profile.img-circle(width='50', height='50', src='../static/ai/images/profile.png', alt='google plus')
+                            .gsignin
+                                .g-signin2(data-onsuccess='onSignIn')
+                .bottom-panel
+                        #right-pane.col-md-8.col-md-push-4
+                            #chat.chat-box-wrapper
+                                #chat-msg-box.chat-messages
+                                    .msg_user
+                                        | Hello eywa
+                                    .msg_ai
+                                        | Hey, what's up? 
+                                    .reference
+                                .chat-bottom
+                                    form#chat-box(action='#', method='post', onsubmit='return false', autocomplete='off')
+                                        | {% csrf_token %}
+                                        input#chat-message-text(type='text', placeholder='your message..')
+                                        span.input-group-btn
+                                            button#chat-send-button.btn(type='button')
+                                                span.glyphicon.glyphicon-menu-right(aria-hidden='true')
+                        #left-pane.col-md-4.col-md-pull-8
+                            .data-pane
 | {% endblock %}
-
