@@ -2,6 +2,7 @@ var gId = '';
 var gName = '';
 var gImage = '';
 var gEmail = '';
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId());
@@ -15,16 +16,19 @@ function onSignIn(googleUser) {
     gEmail = profile.getEmail();
     showSignInOrImg();
 }
-function checkIfSignedIn(){
-    if (gId != ''){return true;
-    }
-    else{return false;
+
+function checkIfSignedIn() {
+    if (gId != '') {
+        return true;
+    } else {
+        return false;
         console.log("User not signed in");
     }
 }
+
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
+    auth2.signOut().then(function() {
         console.log('User signed out.');
         gId = '';
         gName = '';
@@ -33,23 +37,24 @@ function signOut() {
         showSignInOrImg();
     });
 }
-function showSignInOrImg(){
-    if (checkIfSignedIn()){
+
+function showSignInOrImg() {
+    if (checkIfSignedIn()) {
         $("#user-profile")[0].style.display = "inline";
         $(".gsignin")[0].style.display = "none";
         $("#user-name")[0].style.display = "inline-block";
         $("#user-name")[0].innerHTML = gName;
-        if(gImage.indexOf("http") > -1){
+        if (gImage.indexOf("http") > -1) {
             $("#user-profile")[0].src = gImage
         }
-    }
-    else{
+    } else {
         $(".gsignin")[0].style.display = "inline";
         $("#user-name")[0].style.display = "none";
         $("#user-profile")[0].style.display = "none";
         $("#user-name")[0].innerHTML = "";
     }
 }
+
 function isEmptyOrSpaces(str) {
     return str === null || str.match(/^ *$/) !== null;
 }
@@ -59,7 +64,7 @@ function getImageSize(img, callback) {
 
     var wait = setInterval(function() {
         var w = $img[0].naturalWidth,
-        h = $img[0].naturalHeight;
+            h = $img[0].naturalHeight;
         if (w && h) {
             clearInterval(wait);
             callback.apply(this, [w, h]);
@@ -68,32 +73,32 @@ function getImageSize(img, callback) {
 }
 //Funciton to do animaiton
 $.fn.extend({
-  animateCss : function(animationName){
-    var animationEnd = 'webkitAnimationEnd onanimationend animationend' ;
-    $(this).addClass('animated ' + animationName).one(animationEnd, function(){
-        $(this).removeClass('animated ' + animationName);
-    });
-  }
+    animateCss: function(animationName) {
+        var animationEnd = 'webkitAnimationEnd onanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+    }
 });
-$('#chat-msg-box').scroll(function(e){
-console.log($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight);
-   if($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight){
-       $('#chat-msg-box').finish();
-   }
+$('#chat-msg-box').scroll(function(e) {
+    console.log($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight);
+    if ($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight) {
+        $('#chat-msg-box').finish();
+    }
 });
 $(document).ready(function() {
     $("#chat-message-text").focus();
     showSignInOrImg();
     var idu;
-    $("#user-profile").click(function(){
+    $("#user-profile").click(function() {
         signOut();
     });
     $("#user-profile").hover(
-        function(e){
+        function(e) {
             $("#user-profile")[0].src = "../static/ai/images/signout.png"
             $("#user-name")[0].innerHTML = "Sign Out";
         },
-        function(e){
+        function(e) {
             $("#user-profile")[0].src = gImage
             $("#user-name")[0].innerHTML = gName;
         }
@@ -110,41 +115,45 @@ $(document).ready(function() {
             $("#chat-message-text").val("")
             $("<div class = 'msg_user animated slideInRight'>" + msg + "</div>").insertBefore(".reference");
             $("#chat-msg-box").stop();
-            $("#chat-msg-box").animate({scrollTop:$("#chat-msg-box")[0].scrollHeight}, 9000, 'easeOutExpo');
+            $("#chat-msg-box").animate({
+                scrollTop: $("#chat-msg-box")[0].scrollHeight
+            }, 9000, 'easeOutExpo');
             var reply_request = $.ajax({
-                                type:'POST',
-                                url:'api/',
-                                data:{
-                                umsg:msg,
-                                uid:gId,
-                                uname:gName,
-                                uemail:gEmail,
-                                uimage:gImage,
-                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
-                                },
+                type: 'POST',
+                url: 'api/',
+                data: {
+                    umsg: msg,
+                    uid: gId,
+                    uname: gName,
+                    uemail: gEmail,
+                    uimage: gImage,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
             });
-            reply_request.done(function(data){
+            reply_request.done(function(data) {
                 for (var i = 0; i < data['resultsno']; i++) {
                     var item = data['results'][i];
                     if (item['type'] == 'text') {
                         $("<div class = 'msg_ai animated slideInLeft'>" + item['content'] + "</div>").insertBefore(".reference");
-                    }
-                    else if (item['type'] == 'image') {
+                    } else if (item['type'] == 'image') {
                         $("<div class = 'msg_ai animated slideInLeft'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
-                        getImageSize($('.img_ai').last(), function(width, height){
+                        getImageSize($('.img_ai').last(), function(width, height) {
                             $("#chat-msg-box").stop();
-                            $("#chat-msg-box").animate({scrollTop:$("#chat-msg-box")[0].scrollHeight + height}, 9000, 'easeOutExpo');
+                            $("#chat-msg-box").animate({
+                                scrollTop: $("#chat-msg-box")[0].scrollHeight + height
+                            }, 9000, 'easeOutExpo');
                         });
                     }
                     $("#chat-msg-box").stop();
-                    $("#chat-msg-box").animate({scrollTop:$("#chat-msg-box")[0].scrollHeight}, 9000, 'easeOutExpo');
+                    $("#chat-msg-box").animate({
+                        scrollTop: $("#chat-msg-box")[0].scrollHeight
+                    }, 9000, 'easeOutExpo');
                 };
             });
-            reply_request.fail(function( jqXHR, textStatus ) {
-                console.log( "Request failed: " + textStatus );
+            reply_request.fail(function(jqXHR, textStatus) {
+                console.log("Request failed: " + textStatus);
             });
-        }
-        else {
+        } else {
             $("#chat-send-button").animateCss('tada');
         }
     });
