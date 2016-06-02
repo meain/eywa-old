@@ -2,3 +2,4 @@
 /static/static_root
 db.sqlite*
 tags
+.tern-project
