@@ -90,7 +90,7 @@ $(document).ready(function() {
     });
     $("#user-profile").hover(
         function(e){
-            $("#user-profile")[0].src = "../static/ai/img/signout.png"
+            $("#user-profile")[0].src = "../static/ai/images/signout.png"
             $("#user-name")[0].innerHTML = "Sign Out";
         },
         function(e){
