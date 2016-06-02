@@ -6,4 +6,4 @@ Django version : 1.9
 ````
 
 ## Screen shot
-![img](http://i.imgur.com/Gn3tUzC.png)
+![img](http://i.imgur.com/qKF6IkT.png)
