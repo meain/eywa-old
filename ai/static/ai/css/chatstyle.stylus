@@ -132,10 +132,12 @@ body
     outline none
     padding-left 13px
     width calc(100% - 50px)
+    overflow-x hidden 
 
 .chat-messages
     height calc(100% - 40px)
     overflow-y auto
+    overflow-x hidden 
     padding 30px
     margin-bottom 10px
     width 100%
