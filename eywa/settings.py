@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ai',
     'rest_framework',
+    'channels',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -81,6 +82,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+#Things for django channels
+CHANNEL_LAYERS = {
+"default": {
+    "BACKEND": "asgiref.inmemory.ChannelLayer",
+    "ROUTING": "eywa.routing.channel_routing",
+},
 }
 
 

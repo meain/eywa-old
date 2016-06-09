@@ -87,6 +87,15 @@ $('#chat-msg-box').scroll(function(e) {
     }
 });
 $(document).ready(function() {
+// Note that the path doesn't matter for routing; any WebSocket
+// connection gets bumped over to WebSocket consumers
+socket = new WebSocket("ws://" + window.location.host + "/ai/");
+socket.onmessage = function(e) {
+    alert(e.data);
+}
+socket.onopen = function() {
+    socket.send("testing");
+}
     $("#chat-message-text").focus();
     showSignInOrImg();
     var idu;
