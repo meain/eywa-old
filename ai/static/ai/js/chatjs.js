@@ -86,16 +86,27 @@ $('#chat-msg-box').scroll(function(e) {
         $('#chat-msg-box').finish();
     }
 });
-$(document).ready(function() {
+
+// Get user data in json string format
+function getUserInfo(msg){
+    var user_data = {};
+    user_data['msg'] = msg;
+    user_data['id'] = gId;
+    user_data['name'] = gName;
+    user_data['email'] = gEmail;
+    user_data['image'] = gImage;
+    data = JSON.stringify(user_data);
+    return data;
+}
+
 // Note that the path doesn't matter for routing; any WebSocket
 // connection gets bumped over to WebSocket consumers
 socket = new WebSocket("ws://" + window.location.host + "/ai/");
-socket.onmessage = function(e) {
-    alert(e.data);
-}
 socket.onopen = function() {
-    socket.send("testing");
+    console.log('Socket open');
 }
+
+$(document).ready(function() {
     $("#chat-message-text").focus();
     showSignInOrImg();
     var idu;
@@ -127,19 +138,10 @@ socket.onopen = function() {
             $("#chat-msg-box").animate({
                 scrollTop: $("#chat-msg-box")[0].scrollHeight
             }, 9000, 'easeOutExpo');
-            var reply_request = $.ajax({
-                type: 'POST',
-                url: 'api/',
-                data: {
-                    umsg: msg,
-                    uid: gId,
-                    uname: gName,
-                    uemail: gEmail,
-                    uimage: gImage,
-                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-                },
-            });
-            reply_request.done(function(data) {
+            socket.send(getUserInfo(msg));
+            socket.onmessage = function(e) {
+                data = JSON.parse(e.data);
+                console.log(data);
                 for (var i = 0; i < data['resultsno']; i++) {
                     var item = data['results'][i];
                     if (item['type'] == 'text') {
@@ -158,11 +160,9 @@ socket.onopen = function() {
                         scrollTop: $("#chat-msg-box")[0].scrollHeight
                     }, 9000, 'easeOutExpo');
                 };
-            });
-            reply_request.fail(function(jqXHR, textStatus) {
-                console.log("Request failed: " + textStatus);
-            });
-        } else {
+            }
+        }
+        else {
             $("#chat-send-button").animateCss('tada');
         }
     });
