@@ -5,6 +5,7 @@ import urllib
 from reply import *
 from models import Querry
 from django.utils import timezone
+from views import k
 
 def http_consumer(message):
     pass
@@ -23,7 +24,6 @@ def ws_message(message):
     # it is currently in unicode format and has to be converted into string
     urllib.unquote(msg).decode('utf8')
     urllib.unquote(id).decode('utf8')
-    k = ''
     q_res= get_result(msg, name, k)
     q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
     q.save()
