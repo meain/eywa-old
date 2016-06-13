@@ -114,6 +114,7 @@ body {
 #som-signout {
   cursor: pointer;
   text-decoration: underline;
+  display: inline-block;
 }
 #user-name {
   display: none;
