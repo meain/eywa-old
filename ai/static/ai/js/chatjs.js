@@ -47,11 +47,19 @@ function showSignInOrImg() {
         if (gImage.indexOf("http") > -1) {
             $("#user-profile")[0].src = gImage
         }
+        // For signout popup
+        $("#som-u-name")[0].innerHTML = gName;
+        $("#som-u-email")[0].innerHTML = gEmail;
+        if (gImage.indexOf("http") > -1) {
+            $("#som-img")[0].src = gImage
+        }
     } else {
         $(".gsignin")[0].style.display = "inline";
         $("#user-name")[0].style.display = "none";
         $("#user-profile")[0].style.display = "none";
         $("#user-name")[0].innerHTML = "";
+        $("#user-profile")[0].src = "../static/ai/images/profile.png"
+        $("#som-img")[0].src = "../static/ai/images/profile.png"
     }
 }
 
@@ -110,19 +118,14 @@ $(document).ready(function() {
     $("#chat-message-text").focus();
     showSignInOrImg();
     var idu;
-    $("#user-profile").click(function() {
-        signOut();
+    $("#user-profile").click(function(e) {
+        e.stopPropagation();
+        displayPopup('#user-profile', '#signinpopup', 'left', 'below', true, 'white', 7);
     });
-    $("#user-profile").hover(
-        function(e) {
-            $("#user-profile")[0].src = "../static/ai/images/signout.png"
-            $("#user-name")[0].innerHTML = "Sign Out";
-        },
-        function(e) {
-            $("#user-profile")[0].src = gImage
-            $("#user-name")[0].innerHTML = gName;
-        }
-    );
+    $("#som-signout").click(function() {
+        signOut();
+        removePopup("#signinpopup");
+    });
     $("#chat-message-text").keyup(function(event) {
         if (event.keyCode == 13) {
             $("#chat-send-button").click();
