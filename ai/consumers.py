@@ -5,7 +5,10 @@ import urllib
 from reply import *
 from models import Querry
 from django.utils import timezone
-from views import k
+from views import get_aiml
+
+# Get the loaded aiml from views
+k = get_aiml()
 
 def http_consumer(message):
     pass

@@ -45,9 +45,9 @@ def wolfram_result(query):
 def aiml_result(query, k):
     item = {}
     # the aiml takes time to load, will have to run it in a parallel thread
-    item['content'] = "Not connected to aiml!"
-    # item['content'] = reply_aiml(query,k)
-    # if item['content'] == '':
-    #     item['content'] = 'Issue with aiml'
+    # item['content'] = "Not connected to aiml!"
+    item['content'] = reply_aiml(query,k)
+    if item['content'] == '':
+        item['content'] = 'Issue with aiml'
     item['type'] = 'text'
     return item

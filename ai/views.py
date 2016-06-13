@@ -9,23 +9,22 @@ import json
 import urllib
 import threading
 from multiprocessing import Queue
+import aiml
 
 # Create your views here.
 from reply import *
 from apis.aimlbot import *
-k = ''
+k = initialize_aiml()
 from .forms import QuerryForm
+flag = 0
 
-def load_aiml():
+def get_aiml():
     global k
-    # k = initialize_aiml()
-    print "Still loading"
+    return k
 
 def index(request):
     form = QuerryForm(request.POST or None)
     context = {'form' : form}
-    aiml_thread = threading.Thread(target=load_aiml())
-    aiml_thread.start()
     return render(request, "ai/index.html", context)
 
 class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
