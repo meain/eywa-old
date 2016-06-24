@@ -229,7 +229,6 @@ body {
   padding-top: 7px;
   padding-bottom: 7px;
   word-wrap: break-word;
-  animation-duration: 0.2s;
 }
 .img_ai {
 /* border-radius 4px 35px 35px 4px */
@@ -257,7 +256,6 @@ body {
   padding-top: 7px;
   padding-bottom: 7px;
   word-wrap: break-word;
-  animation-duration: 0.2s;
 }
 .data-pane {
   height: 100%;
