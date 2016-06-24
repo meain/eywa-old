@@ -136,7 +136,7 @@ $(document).ready(function() {
         if (!isEmptyOrSpaces(msg)) {
             $("#chat-send-button").animateCss('flash');
             $("#chat-message-text").val("")
-            $("<div class = 'msg_user animated slideInRight'>" + msg + "</div>").insertBefore(".reference");
+            $("<div class = 'msg_user animated fadeIn'>" + msg + "</div>").insertBefore(".reference");
             $("#chat-msg-box").stop();
             $("#chat-msg-box").animate({
                 scrollTop: $("#chat-msg-box")[0].scrollHeight
@@ -148,9 +148,9 @@ $(document).ready(function() {
                 for (var i = 0; i < data['resultsno']; i++) {
                     var item = data['results'][i];
                     if (item['type'] == 'text') {
-                        $("<div class = 'msg_ai animated slideInLeft'>" + item['content'] + "</div>").insertBefore(".reference");
+                        $("<div class = 'msg_ai animated fadeIn'>" + item['content'] + "</div>").insertBefore(".reference");
                     } else if (item['type'] == 'image') {
-                        $("<div class = 'msg_ai animated slideInLeft'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
+                        $("<div class = 'msg_ai animated fadeIn'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
                         getImageSize($('.img_ai').last(), function(width, height) {
                             $("#chat-msg-box").stop();
                             $("#chat-msg-box").animate({

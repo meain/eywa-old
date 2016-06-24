@@ -27,6 +27,3 @@ def index(request):
     context = {'form' : form}
     return render(request, "ai/index.html", context)
 
-class QuerryResult(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Querry.objects.all()
-    serializer_class = AiSerializer
