@@ -212,7 +212,7 @@ body {
 }
 .msg_ai {
   background-color: #fff;
-  background-color: rgba(255,175,75,0.5);
+  background-color: rgba(255,175,75,0.35);
   border-radius: 0px 3px 3px 0px;
 /* box-shadow 0 0 6px #B2B2B2 */
   border-left: 3px solid rgba(0,0,0,0.25);
@@ -240,7 +240,7 @@ body {
 }
 .msg_user {
   background-color: #fff;
-  background-color: rgba(33,204,112,0.5);
+  background-color: rgba(33,204,112,0.35);
 /* border-radius 40px 4px 4px 40px */
   border-radius: 3px 0px 0px 3px;
   border-right: 3px solid rgba(0,0,0,0.25);
