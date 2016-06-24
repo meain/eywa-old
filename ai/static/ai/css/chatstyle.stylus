@@ -12,7 +12,8 @@ body
 
 .top-panel
     background-color #F2F5F8
-    border-bottom 3px solid #ded
+    /* border-bottom 3px solid #ded */
+    /* box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.75); */
     display block
     height 70px
     padding-left 2px
@@ -144,6 +145,7 @@ body
 @media (max-width : 992px)
     #right-pane
         border-radius 0
+        padding 0
 
 .chat-box-wrapper
     color #fff
@@ -201,7 +203,7 @@ body
 .msg_ai
     background-color #fff
     background-color rgba(241, 196, 15,0.25)
-    /* border-radius 4px 40px 40px 4px */
+    border-radius 0px 3px 3px 0px
     /* box-shadow 0 0 6px #B2B2B2 */
     border-left 3px solid rgba(0, 0, 0, 0.25);
     clear both
@@ -221,6 +223,7 @@ body
 
 .img_ai
     /* border-radius 4px 35px 35px 4px */
+    border-radius 0px 3px 3px 0px
     height auto
     /* margin 0 5px */
     max-width 100%
@@ -229,6 +232,7 @@ body
     background-color #fff
     background-color rgba(46, 204, 113,0.25)
     /* border-radius 40px 4px 4px 40px */
+    border-radius 3px 0px 0px 3px
     border-right 3px solid rgba(0, 0, 0, 0.25);
     clear both
     color #000
