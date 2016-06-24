@@ -1,7 +1,7 @@
 body
     /* background-color rgba(255, 255, 255,1.0) */
-    background: rgba(255,175,75,1);
-    background: linear-gradient(to right, rgba(255,175,75,1) 0%, rgba(255,10,79,1) 100%);
+    background: linear-gradient(-225deg, #ffb76b 0%,#ffa73d 50%,#ff7c00 51%,#ff7f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* background-color rgba(255, 174, 136, 1.0) */
 
 .fill-page
     height 100vh
@@ -11,13 +11,13 @@ body
     float right
 
 .top-panel
-    background-color #F2F5F8
+    /* background-color #F2F5F8 */
     /* border-bottom 3px solid #ded */
     /* box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.75); */
     display block
     height 70px
-    padding-left 2px
-    padding-right 2px
+    padding-left 10px
+    padding-right 10px
 @media (max-width : 992px)
     .top-panel
         border-radius 0
@@ -40,17 +40,20 @@ body
 #left-pane-heading
     border-bottom 5px
     float left
-    font-family "Roboto", helvetica, sans-serif
     height 65px
     padding-left 2px
     text-align left
 
-#heading
+#right-eywa-heading
     margin-bottom 6px
     margin-top 5px
     padding-top 3px
     font-family 'Pacifico', cursive
     color rgba(230, 126, 34, 0.70)
+    visibility hidden
+@media (max-width : 992px)
+    #right-eywa-heading
+        visibility visible
 
 #usr-dat
     border-bottom 5px
@@ -120,19 +123,43 @@ body
     margin-top 10px
     font-family "Open Sans", monaco, Consolas, monospace
     font-size 14px
+    color black
 
 .bottom-panel
-    height calc(100% - 70px)
-    /* height 100% */
+    /* height calc(100% - 70px) */
+    height 100%
 
 #left-pane
-    background-color rgba(236, 240, 241,1.0)
+    /* background-color rgb(235, 74, 29); */
+    /* background-image url("https://files.slack.com/files-pri/T1JH44JF3-F1L367WKY/her_wallpaper_by_p2pproductions-d6k1c6a.png") */
+    background-image url("https://files.slack.com/files-pri/T1JH44JF3-F1L4LV290/1b317e27c125b1712424cd5e34517c97_-_copy.jpg")
+    background-repeat no-repeat
+    background-size cover
+    /* background: linear-gradient(0deg, rgba(248,80,50,1) 0%, rgba(241,111,92,1) 0%, rgba(246,41,12,1) 65%, rgba(240,47,23,1) 81%, rgba(231,56,39,1) 100%); */
     color #fff
     height 100%
     padding 10px
 @media (max-width : 992px)
     #left-pane
         border-radius 0
+
+#left-top-pane-heading
+    border-bottom 5px
+    height 65px
+    text-align center
+
+#left-eywa-heading
+    margin-top 5px
+    padding-top 3px
+    width 100%
+    text-align center
+    font-family 'Pacifico', cursive
+    /* color rgba(230, 126, 34, 0.70) */
+    color white
+    display inline-block
+@media (max-width : 992px)
+    #left-eywa-heading
+        display none
 
 #right-pane
     background-color white
@@ -147,11 +174,13 @@ body
 
 .chat-box-wrapper
     color #fff
-    height 100% 
+    /* height 100% */ 
+    height calc(100% - 70px)
     width 100%
     margin 0 auto
     padding 10px
     padding-bottom 10px
+    padding-top 1px
 
 .chat-bottom
     background-color #CACFD2
@@ -159,6 +188,7 @@ body
 
 #chat-send-button
     background-color #CACFD2
+    /* background-color rgba(255, 174, 136, 1.0) */
     border 0 solid #34495e
     box-shadow 0 0 0 #B2B2B2
     cursor pointer
@@ -173,6 +203,7 @@ body
 
 #chat-message-text
     background-color #CACFD2
+    /* background-color rgba(255, 174, 136, 1.0) */
     border 0 solid #34495e
     box-shadow 0 0 0 #B2B2B2
     color black
@@ -200,12 +231,13 @@ body
 
 .msg_ai
     background-color #fff
-    background-color rgba(255, 175, 75,0.35)
-    border-radius 0px 3px 3px 0px
+    /* background-color rgba(243, 156, 18, 0.5) */
+    background-image url("https://files.slack.com/files-pri/T1JH44JF3-F1L4H8CAH/ffacb60e515f0cb613c54169a93973d6_-_copy.jpg")
+    /* border-radius 0px 3px 3px 0px */
     /* box-shadow 0 0 6px #B2B2B2 */
-    border-left 3px solid rgba(0, 0, 0, 0.25);
+    /* border-left 3px solid rgba(0, 0, 0, 0.25); */
     clear both
-    color #000
+    color #fff
     float left
     margin-bottom 15px
     margin-right auto
@@ -220,17 +252,17 @@ body
 
 .img_ai
     /* border-radius 4px 35px 35px 4px */
-    border-radius 0px 3px 3px 0px
+    /* border-radius 0px 3px 3px 0px */
     height auto
     /* margin 0 5px */
     max-width 100%
 
 .msg_user
-    background-color #fff
-    background-color rgba(33, 204, 112,0.35)
+    /* background-color rgba(189, 195, 199,1.0) */
+    background-color rgba(231, 76, 60, 0.5)
     /* border-radius 40px 4px 4px 40px */
-    border-radius 3px 0px 0px 3px
-    border-right 3px solid rgba(0, 0, 0, 0.25);
+    /* border-radius 3px 0px 0px 3px */
+    /* border-right 3px solid rgba(0, 0, 0, 0.25); */
     clear both
     color #000
     float right
