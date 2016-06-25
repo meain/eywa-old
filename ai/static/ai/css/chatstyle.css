@@ -284,3 +284,7 @@ body {
   height: 5px;
   width: 5px;
 }
+#fullscreenimage {
+  height: 60vh;
+  width: auto;
+}

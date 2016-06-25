@@ -151,6 +151,12 @@ $(document).ready(function() {
                         $("<div class = 'msg_ai animated fadeIn'>" + item['content'] + "</div>").insertBefore(".reference");
                     } else if (item['type'] == 'image') {
                         $("<div class = 'msg_ai animated fadeIn'><img class='img_ai' src='" + item['content'] + "' alt = 'image'></div>").insertBefore(".reference");
+                        $('.img_ai').click(function(e){
+                            e.stopPropagation();
+                            var aiMsgImage = e.target.src;
+                            $("#fullscreenimage").attr("src", aiMsgImage);
+                            displayFullScreenPopup("#popupboximagecontent");
+                        });
                         getImageSize($('.img_ai').last(), function(width, height) {
                             $("#chat-msg-box").stop();
                             $("#chat-msg-box").animate({
