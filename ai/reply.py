@@ -13,11 +13,11 @@ def get_result(query, user_name, k):
         print "Wolfram query : " + query
         res.append(wolfram_result(get_query_arg(query)))
         return res
-    elif check_if_arg(query, "what"):
-        print "What : " + query
-        res.append(image_result(get_query_arg(query)))
-        res.append(wolfram_result(get_query_arg(query)))
-        return res
+    # elif check_if_arg(query, "what"):
+    #     print "What : " + query
+    #     res.append(image_result(get_query_arg(query)))
+    #     res.append(wolfram_result(get_query_arg(query)))
+    #     return res
     elif check_if_arg(query, "image"):
         print "Image query : " + query
         res.append(image_result(get_query_arg(query)))

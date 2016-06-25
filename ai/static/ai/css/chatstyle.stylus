@@ -16,7 +16,7 @@ body
     padding-right 10px
 @media (max-width : 992px)
     .top-panel
-        background: linear-gradient(to left, rgba(253,108,104,1) 0%, rgba(255,10,10,1) 100%);
+        background: linear-gradient(to left, #ed562c 0%, #ef4d1f 100%)
 
 #data-container
     height 100vh
@@ -127,9 +127,10 @@ body
     height 100%
 
 #left-pane
-    background-image url("../images/leftback.jpg")
-    background-repeat no-repeat
-    background-size cover
+    /* background-image url("../images/leftback.jpg") */
+    /* background-repeat no-repeat */
+    /* background-size cover */
+    background: linear-gradient(to top, #ed562c 0%, #ef4d1f 100%)
     color #fff
     height 100%
     padding 10px
