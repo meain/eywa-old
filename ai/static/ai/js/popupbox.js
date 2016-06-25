@@ -100,8 +100,8 @@ function displayFullScreenPopup(popupcontent, backgound = true, backgoundOpacity
 
     //Center the popupcontent
     popupcontent.css('position', 'absolute');
-    popupcontent.css('max-height', '60vh');
-    popupcontent.css('width', 'auto');
+    popupcontent.css('max-height', '90vh');
+    popupcontent.css('max-width', '90vw');
     popupcontent.css('top', '50%');
     popupcontent.css('left', '50%');
     popupcontent.css('transform', 'translate(-50%, -50%)');
