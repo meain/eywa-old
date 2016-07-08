@@ -17,6 +17,9 @@ body
 @media (max-width : 992px)
     .top-panel
         background: linear-gradient(to left, #ed562c 0%, #ef4d1f 100%)
+        position fixed
+        width 100%
+        z-index 100
 
 #data-container
     height 100vh
@@ -166,7 +169,7 @@ body
         border-radius 0
         padding 0
 
-.chat-box-wrapper
+#chat-box-wrapper
     color #fff
     height calc(100% - 70px)
     width 100%
@@ -174,6 +177,11 @@ body
     padding 10px
     padding-bottom 10px
     padding-top 1px
+@media (max-width : 992px)
+    #chat-box-wrapper
+        // To accomodate fixed top bar
+        padding-top 70px
+        height 100%
 
 .chat-bottom
     background-color #CACFD2
@@ -206,10 +214,10 @@ body
     width calc(100% - 50px)
     overflow-x hidden 
 
-.chat-messages
+#chat-msg-box
     height calc(100% - 40px)
     overflow-y auto
-    overflow-x hidden 
+    overflow-x hidden
     padding-top 20px
     margin-bottom 10px
     width 100%
