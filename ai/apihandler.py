@@ -48,6 +48,6 @@ def aiml_result(query, k):
     # item['content'] = "Not connected to aiml!"
     item['content'] = reply_aiml(query,k)
     if item['content'] == '':
-        item['content'] = 'Issue with aiml'
+        item['content'] = 'Didn\'t get you'
     item['type'] = 'text'
     return item
