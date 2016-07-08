@@ -5,5 +5,8 @@ Python version : 2.x
 Django version : 1.9
 ````
 
-## Screen shot
-![img](http://i.imgur.com/qKF6IkT.png)
+## Screenshot
+### ! Web
+![web](http://i.imgur.com/0f7OhkO.png)
+### ! Mobile
+![mobile](http://i.imgur.com/CFQZ0s5.png)
