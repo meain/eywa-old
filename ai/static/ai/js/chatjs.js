@@ -5,10 +5,6 @@ var gEmail = '';
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    /* console.log('ID: ' + profile.getId()); */
-    /* console.log('Name: ' + profile.getName()); */
-    /* console.log('Image URL: ' + profile.getImageUrl()); */
-    /* console.log('Email: ' + profile.getEmail()); */
     //Save data
     gId = profile.getId();
     gName = profile.getName();
@@ -22,14 +18,12 @@ function checkIfSignedIn() {
         return true;
     } else {
         return false;
-        console.log("User not signed in");
     }
 }
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
-        console.log('User signed out.');
         gId = '';
         gName = '';
         gImage = '';
@@ -89,7 +83,6 @@ $.fn.extend({
     }
 });
 $('#chat-msg-box').scroll(function(e) {
-    console.log($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight);
     if ($('#chat-msg-box').scrollTop() + $('#chat-msg-box').innerHeight() >= $('#chat-msg-box')[0].scrollHeight) {
         $('#chat-msg-box').finish();
     }
@@ -111,7 +104,6 @@ function getUserInfo(msg){
 // connection gets bumped over to WebSocket consumers
 socket = new WebSocket("ws://" + window.location.host + "/ai/");
 socket.onopen = function() {
-    console.log('Socket open');
 }
 
 $(document).ready(function() {
@@ -144,7 +136,6 @@ $(document).ready(function() {
             socket.send(getUserInfo(msg));
             socket.onmessage = function(e) {
                 data = JSON.parse(e.data);
-                console.log(data);
                 for (var i = 0; i < data['resultsno']; i++) {
                     var item = data['results'][i];
                     if (item['type'] == 'text') {
