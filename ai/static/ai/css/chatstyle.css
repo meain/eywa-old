@@ -246,9 +246,6 @@ body {
     padding: 0px;
   }
 }
-#chat-msg-box::-webkit-scrollbar {
-  width: 0 !important;
-}
 .msg_ai {
   background-color: #fff;
   background-color: #f63b00;

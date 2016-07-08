@@ -226,8 +226,6 @@ body
 @media (max-width : 992px)
     .chat-messages
         padding 0px
-// Fix displaying unnecessary scrollbar
-#chat-msg-box::-webkit-scrollbar { width: 0 !important }
 
 .msg_ai
     background-color #fff
