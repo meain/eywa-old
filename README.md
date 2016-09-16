@@ -7,6 +7,13 @@ Django version : 1.9
 
 ## Useful stuff
 
+### Using current aiml engine
+
+It is quiet easy to use the aiml engine.
+All you have to do is to add the aiml files in to the folder `eywa/ai/apis/aiml_files`.
+
+Now if you need to have aiml files from multiple locations, just add the the other sources in `eywa/ai/apis/aimlbot.py`
+
 ### Adding apis
 
 Adding more apis to the backend is quiet easy. All the apis base level apis are to be added in `eywa/ai/apis`.
