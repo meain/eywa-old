@@ -99,7 +99,7 @@ $('#chat-msg-box').scroll(function(e) {
     }
 });
 
-function getUserInfo(msg){
+function formatRequest(msg){
     // Get user data in json string format
     var user_data = {};
     user_data['msg'] = msg;
@@ -162,7 +162,7 @@ $(document).ready(function() {
             }, 9000, 'easeOutExpo');
 
             // Send the user input through WebSocket connection
-            socket.send(getUserInfo(msg));
+            socket.send(formatRequest(msg));
             socket.onmessage = function(e) {
                 // On reciving the result back from the server
                 data = JSON.parse(e.data);
@@ -197,7 +197,7 @@ $(document).ready(function() {
                     }, 9000, 'easeOutExpo');
                 };
             }
-            
+
         }
         else {
             // In case the user input is null, jsut show an animations to show invalid input
