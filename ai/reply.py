@@ -1,18 +1,21 @@
 from apihandler import *
 
 def check_if(query, text):
+    # Just check for simple text match
     if query == text:
         return True
     else:
         return False
 
 def check_if_arg(query, text):
+    # checking everything from second word
     if query.split(' ', 1)[0] == text and len(query.split(' ', 1)) > 1:
         return True
     else:
         return False
 
 def get_query_arg(query):
+    # Get all except first word from user query
     return query.split(' ', 1)[1]
 
 
