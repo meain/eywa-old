@@ -1,43 +1,49 @@
-from django.http import HttpResponse
 from channels.handler import AsgiHandler
 import json
 import urllib
 from reply import *
 from models import Querry
 from django.utils import timezone
-from views import get_aiml
-
-# Get the loaded aiml from views
-k = get_aiml()
 
 def http_consumer(message):
+    '''
+    No http request has to be handled here.
+    The only http request is before initiating ws, so is handled in views.py
+    '''
     pass
 
 def ws_message(message):
-    # ASGI WebSocket packet-received and send-packet message types
-    # both have a "text" key for their textual data.
-    usr_data = json.loads(message.content['text'])
-    msg = usr_data['msg']
-    id = usr_data['id']
-    name = usr_data['name']
-    email = usr_data['email']
-    image = usr_data['image']
-    print "\n\n---------------------"
-    print "User message : " + msg + "\nUser id : "  + id + "\n"
-    # it is currently in unicode format and has to be converted into string
-    urllib.unquote(msg).decode('utf8')
-    urllib.unquote(id).decode('utf8')
-    q_res= get_result(msg, name, k)
-    q = Querry(querry_term = msg, querry_result = q_res, timestamp = timezone.now())
-    q.save()
-    print "Result : \n" + str(q_res)
+    '''
+    Hnadles all the queries/chats
+    '''
+    # Extract user data
+    usr_data = json.loads(message.content['text']) # Contains [msg, id, name, email, image]
+
+    # Convert msg and id from unicode to sting
+    urllib.unquote(usr_data['msg']).decode('utf8')
+    urllib.unquote(usr_data['id']).decode('utf8')
+
+    # Get result from reply.py
+    q_res= get_result(usr_data)
+
+    # Logging to database
+    query_data = Querry(querry_term = usr_data['msg'], querry_result = q_res, timestamp = timezone.now())
+    query_data.save()
+
+    # Format result
     data = {}
-    data['querry_term'] = q.querry_term
+    data['querry_term'] = query_data.querry_term
     data['resultsno'] = len(q_res)
     data['results'] = q_res
-    data = json.dumps(data)
-    print "\nJson response : \n" + data
+
+    # Display log
+    print "\n\n---------------------"
+    print "User message : " + usr_data['msg'] + "\nUser id : "  + usr_data['id']
+    print "Result : \n" + str(data['results'])
     print "---------------------------\n\n"
+
+    # Reply back to the websocket query
+    data = json.dumps(data)
     message.reply_channel.send({
         "text": data,
     })

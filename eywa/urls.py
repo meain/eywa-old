@@ -17,6 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'', include('ai.urls'))
+    url(r'^admin/', admin.site.urls), # For admin page
+    url(r'', include('ai.urls')) # For any other connection
 ]

@@ -1,18 +1,12 @@
+'''
+Handles wolframalpha api calls
+'''
 import urllib
 import unicodedata
-from bs4 import BeautifulStoneSoup, BeautifulSoup #import beautifulsoup4 #Extra dependency (install it using pip) (used for parsing a single tag and also to encode the string to unicode format)
+from bs4 import BeautifulStoneSoup, BeautifulSoup
 import cgi
 
-# call = urllib.urlopen("https://docs.python.org/2/library/urllib.html")
-# data = call.read()
-# print data
-
 api_key = "VWL342-QUTHXQJQR6" #Wolfram alpha calls them appID
-
-# def HTMLEntitiesToUnicode(text): # Uses beautifulsoup4
-    # """Converts HTML entities to unicode.  For example '&amp;' becomes '&'."""
-    # text = unicode(BeautifulStoneSoup(text, convertEntities=BeautifulStoneSoup.ALL_ENTITIES))
-    # return text
 
 def unicodeToHTMLEntities(text):
     """Converts unicode to HTML entities.  For example '&' becomes '&amp;'."""
@@ -65,12 +59,3 @@ def make_request(querry):
 
 def frame_and_request(querry):
     return make_request(frame_querry(querry))
-
-
-'''
-querry = "Who the American President?"
-result,dat = frame_and_request(querry)
-print result
-print "\n\nResult : "
-print dat
-'''

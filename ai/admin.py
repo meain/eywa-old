@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
 from .models import Querry
 
+# Register Query model
 admin.site.register(Querry)
